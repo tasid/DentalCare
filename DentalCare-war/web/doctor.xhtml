@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ps="http://xmlns.jcp.org/jsf/passthrough">
 <h:head>
     <title>Dental C@re</title>
 </h:head>
@@ -44,8 +45,7 @@
                                     <h:inputText id="email" value="#{DoctorMB.doctor.email}" validatorMessage="Please enter a valid Email">
                                         <f:validateRequired for="email" />
                                     </h:inputText>&nbsp;                                     
-                                    <h:message for="email" errorClass="error-message" />
-                                    
+                                    <h:message for="email" errorClass="error-message" />                                    
                                 </td>
                             </tr>
                             <tr>
@@ -62,8 +62,11 @@
                                 <th><h:outputLabel for="phoneNumber" value="Phone Number*"/></th>
                                 <th><h:outputLabel value=":"/></th>
                                 <td>
-                                    <h:inputText id="phoneNumber" value="#{DoctorMB.doctor.phoneNumber}" validatorMessage="Please enter a valid Phone Number">
+                                    <h:inputText id="phoneNumber" value="#{DoctorMB.doctor.phoneNumber}" 
+                                                 validatorMessage="Please enter a valid (eg: 111-222-3333) Phone Number"
+                                                 ps:placeholder="641-123-2536">
                                         <f:validateRequired for="phoneNumber"/>
+                                        <!--<f:validateRegex pattern="\\d{3}-\\d{3}-\\d{4}"/>-->
                                     </h:inputText>&nbsp;
                                     <h:message for="phoneNumber" errorClass="error-message" />
                                 </td>

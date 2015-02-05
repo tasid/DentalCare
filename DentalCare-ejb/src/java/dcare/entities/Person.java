@@ -3,7 +3,6 @@
  */
 package dcare.entities;
 
-import dcare.entities.UtilityClass.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
@@ -17,6 +16,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -36,6 +36,7 @@ public class Person implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dateOfBirth;
     private String bloodGroup;
+    @Pattern(regexp = "\\d{3}-\\d{3}-\\d{4}", message = "Please enter a valid (eg: 111-222-3333) Phone Number")
     private String phoneNumber;
     private String gender;
     private String maritalStatus;
