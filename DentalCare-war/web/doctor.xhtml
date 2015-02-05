@@ -42,7 +42,9 @@
                                 <th><h:outputLabel for="email" value="Email*"/></th>
                                 <th><h:outputLabel value=":"/></th>
                                 <td>
-                                    <h:inputText id="email" value="#{DoctorMB.doctor.email}" validatorMessage="Please enter a valid Email">
+                                    <h:inputText id="email" value="#{DoctorMB.doctor.email}" 
+                                                 validatorMessage="Please enter a valid Email"
+                                                 ps:placeholder="care@dcare.com">
                                         <f:validateRequired for="email" />
                                     </h:inputText>&nbsp;                                     
                                     <h:message for="email" errorClass="error-message" />                                    
@@ -66,7 +68,6 @@
                                                  validatorMessage="Please enter a valid (eg: 111-222-3333) Phone Number"
                                                  ps:placeholder="641-123-2536">
                                         <f:validateRequired for="phoneNumber"/>
-                                        <!--<f:validateRegex pattern="\\d{3}-\\d{3}-\\d{4}"/>-->
                                     </h:inputText>&nbsp;
                                     <h:message for="phoneNumber" errorClass="error-message" />
                                 </td>
