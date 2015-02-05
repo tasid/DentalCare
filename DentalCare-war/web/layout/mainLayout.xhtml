@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+ 
+<h:head>
+    <h:outputStylesheet name="bootstrap.css" library="css" />
+    <h:outputStylesheet name="bootstrap-theme.css" library="css" />
+    <h:outputStylesheet name="layout.css" library="css" />
+    <h:outputStylesheet name="site.css" library="css" />
+</h:head>
+
+<h:body> 
+    <div id="page" class="panel"> 
+        <div id="header" class="row grid-row">
+            <div class="col-sm-12">
+                <ui:insert name="header" >
+                    <ui:include src="/layout/header.xhtml" />
+                </ui:insert>
+            </div>
+        </div>
+        <div id="content" class="row grid-row">
+            <div class="col-sm-2" id="left-menu">
+                <p:accordionPanel>  
+                    <p:tab title="Doctor">  
+                        <h:panelGrid columns="2" cellpadding="10">  
+                            <h:form>
+                                <ul>
+                                    <li><h:commandLink action="doctor" value="Add Doctor" class="left-menu-link" /></li>
+                                    <li><h:commandLink action="doctorList" value="Doctor List" class="left-menu-link" /></li>
+                                </ul>
+                            </h:form>
+                        </h:panelGrid>  
+                    </p:tab>  
+                    <p:tab title="Employee">  
+                        <h:panelGrid columns="2" cellpadding="10">  
+                            <h:form>
+                                <ul>
+                                    <li><h:commandLink action="employee" value="Add Employee" class="left-menu-link" /></li>
+                                    <li><h:commandLink action="employeeList" value="Employee List" class="left-menu-link" /></li>
+                                </ul>
+                            </h:form>
+                        </h:panelGrid>  
+                    </p:tab>  
+                    <p:tab title="Patient">  
+                        <h:panelGrid columns="2" cellpadding="10">  
+                            <h:form>
+                                <ul>
+                                    <li><h:commandLink action="patient" value="Add Patient" class="left-menu-link" /></li>
+                                    <li><h:commandLink action="patientList" value="Patient List" class="left-menu-link" /></li>
+                                </ul>
+                            </h:form>
+                        </h:panelGrid>  
+                    </p:tab>
+                    <p:tab title="Appointment">  
+                        <h:panelGrid columns="2" cellpadding="10">  
+                            <h:form>
+                                <ul>
+                                    <li><h:commandLink action="appointment" value="Add Appointment" class="left-menu-link" /></li>
+                                    <li><h:commandLink action="appointmentList" value="Appointment List" class="left-menu-link" /></li>
+                                </ul>
+                            </h:form>
+                        </h:panelGrid>  
+                    </p:tab>
+                    <p:tab title="Reports">  
+                        <h:panelGrid columns="2" cellpadding="10">  
+                            <h:form>
+                                <ul>
+                                    <li><h:commandLink action="availableDoctorsRpt" value="Available Doctors" class="left-menu-link" /></li>
+                                    <li><h:commandLink action="appontmentHistoryByDoctorRpt" value="Appointment History (By Doctor)" class="left-menu-link" /></li>
+                                    <li><h:commandLink action="appontmentHistoryByPatientRpt" value="Appointment History (By Patient)" class="left-menu-link" /></li>
+                                    <li><h:commandLink action="todaysAppointmentRpt" value="Schedule for Today" class="left-menu-link" /></li>
+                                </ul>
+                            </h:form>
+                        </h:panelGrid>  
+                    </p:tab>
+                </p:accordionPanel>                
+            </div>
+            <div class="col-sm-10" id="body-content">
+                <ui:insert name="content" >
+                    <ui:include src="/layout/content.xhtml" />
+                </ui:insert>
+            </div>
+        </div> 
+        <div id="footer" class="row grid-row">
+            <div class="col-sm-12">
+                <ui:insert name="footer" >
+                    <ui:include src="/layout/footer.xhtml" />
+                </ui:insert>
+            </div>
+        </div> 
+    </div> 
+</h:body>
+</html>

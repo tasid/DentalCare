@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Dental C@re</title>
+</h:head>
+<h:body>
+    <h:form>
+        <p:panel>
+            <h:outputText value="Are you sure to inactivate "></h:outputText>
+            <table>
+                <tr>
+                    <td><h:outputLabel value="First Name:"/></td>
+                    <td><h:inputText value="#{doctorMB.doctor.firstName}"/></td>
+                </tr>
+                <tr>
+                    <td><h:outputLabel value="Last Name:"/></td>
+                    <td><h:inputText value="#{doctorMB.doctor.firstName}"/></td>
+                </tr>
+                <tr>
+                    <td><h:outputLabel value="Email:"/></td>
+                    <td><h:inputText value="#{doctorMB.doctor.email}"/></td>
+                </tr>
+                <tr>
+                    <td><h:outputLabel value="Password:"/></td>
+                    <td><h:inputText value="#{doctorMB.doctor.password}"/></td>
+                </tr>
+                <tr>
+                    <td><h:outputLabel value="Phone:"/></td>
+                    <td><h:inputText value="#{doctorMB.doctor.phoneNumber}"/></td>
+                </tr>
+                <tr>
+                    <td><h:outputLabel value="Address:"/></td>
+                    <td><h:inputText value="#{doctorMB.doctor.address}"/></td>
+                </tr>
+                <tr>
+                    <td><h:outputLabel value="Degree:"/></td>
+                    <td><h:inputText value="#{doctorMB.doctor.degree}"/></td>
+                </tr>
+                <tr>
+                    <td><h:outputLabel value="Profile Description:"/></td>
+                    <td><h:inputText value="#{doctorMB.doctor.profileDescription}"/></td>
+                </tr>
+                <tr>
+                    <td><h:outputLabel value="Speciality:"/></td>
+                    <td><h:inputText value="#{doctorMB.doctor.speciality}"/></td>
+                </tr>
+                <tr>
+                    <td><h:outputLabel value="Achievement:"/></td>
+                    <td><h:inputText value="#{doctorMB.doctor.achievement}"/></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><h:commandButton action="#{doctorMB.save()}" value="Save"/></td>
+                </tr>
+            </table>
+        </p:panel>
+    </h:form>
+</h:body>
+</html>
+

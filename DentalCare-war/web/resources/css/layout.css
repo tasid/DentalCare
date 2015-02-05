@@ -1,0 +1,62 @@
+html {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+}
+body {
+    margin: 0px auto;
+    padding: 0px;
+    position: relative;
+}
+html, div#page {
+    background-image:url("../resources/image/siteback.png");
+    background-repeat:repeat-x;
+}
+div#header {
+    min-height: 20%;
+    border-bottom: 3px double #EEE; 
+    text-align: center;
+    vertical-align: middle;
+}
+div#content {
+    width: 100%;
+    float: left;
+    padding: 0px 10px;
+    margin: 10px 0px;
+}
+div#footer {
+    clear: both;
+    width: 100%;
+    min-height: 5%;
+    border-top: 1px dotted #EEE; 
+    text-align: center;
+    font-size: 1em;
+    font-weight: bold;
+    font-style: italic;
+    position: relative;
+    bottom: 0px;
+    vertical-align: middle;
+    padding: 0.5em;
+}
+
+div#left-menu .ui-accordion .ui-accordion-content {
+    padding: 0.5em 2.2em;
+}
+
+div#left-menu ul {
+    padding-left: 0px;
+    margin-bottom: 0px;
+}
+
+div#left-menu ul li {
+    list-style-type: none;
+}
+
+a.left-menu-link {
+    display: block;
+    text-decoration: none;
+    border-bottom: 1px solid #DADADA;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    color: #626569;
+}
