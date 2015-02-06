@@ -51,8 +51,12 @@ table.view-form > tbody > tr:first-child > td {
     clear: both;
     text-align: left;
     vertical-align: middle;
-    padding: 10px 0px !important;
+    padding: 10px !important;
     border-top: 1px dashed gray;
+}
+
+.button-button-panel input[type="submit"] {
+    margin-right: 10px !important;
 }
 
 .control-table {

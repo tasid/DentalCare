@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+    <title>Dental C@re</title>
+</h:head>
+<h:body>
+    <ui:composition template="/layout/mainLayout.xhtml">
+        <ui:define name="content">
+            <h3 class="form-header"><u>Employee: <b>#{EmployeeMB.employee.firstName} #{EmployeeMB.employee.lastName}</b></u></h3>            
+            <div class="panel">
+                <div class="control-table">
+                    <table class="view-form">
+                    <tr>
+                        <th><h:outputLabel value="First Name"/></th>
+                        <th><h:outputLabel value=":"/></th>
+                        <td><h:outputLabel value="#{EmployeeMB.employee.firstName}"/></td>
+                    </tr>
+                    <tr>
+                        <th><h:outputLabel value="Last Name"/></th>
+                        <th><h:outputLabel value=":"/></th>
+                        <td><h:outputLabel value="#{EmployeeMB.employee.lastName}"/></td>
+                    </tr>
+                    <tr>
+                        <th><h:outputLabel value="Email"/></th>
+                        <th><h:outputLabel value=":"/></th>
+                        <td><h:outputLabel value="#{EmployeeMB.employee.email}"/></td>
+                    </tr>
+                    <tr>
+                        <th><h:outputLabel value="Password"/></th>
+                        <th><h:outputLabel value=":"/></th>
+                        <td><h:outputLabel value="#{EmployeeMB.employee.password}"/></td>
+                    </tr>
+                    <tr>
+                        <th><h:outputLabel value="Phone"/></th>
+                        <th><h:outputLabel value=":"/></th>
+                        <td><h:outputLabel value="#{EmployeeMB.employee.phoneNumber}"/></td>
+                    </tr>
+                    <tr>
+                        <th><h:outputLabel value="Blod Group"/></th>
+                        <th><h:outputLabel value=":"/></th>
+                        <td><h:outputLabel value="#{EmployeeMB.employee.bloodGroup}"/></td>
+                    </tr>
+                    <tr>
+                        <th><h:outputLabel value="Address"/></th>
+                        <th><h:outputLabel value=":"/></th>
+                        <td><h:outputLabel value="#{EmployeeMB.employee.address}"/></td>
+                    </tr>
+                    <tr>
+                        <th><h:outputLabel value="Position"/></th>
+                        <th><h:outputLabel value=":"/></th>
+                        <td><h:outputLabel value="#{EmployeeMB.employee.position}"/></td>
+                    </tr>
+                    <tr>
+                        <th><h:outputLabel value="Department"/></th>
+                        <th><h:outputLabel value=":"/></th>
+                        <td><h:outputLabel value="#{EmployeeMB.employee.department}"/></td>
+                    </tr>
+                </table>  
+                </div>
+                <div class="profile-picture">
+                    
+                </div>
+                <div class="button-button-panel">
+                    <h:form>
+                        <h:inputHidden value="#{EmployeeMB.employee.id}" />
+                        <h:commandButton action="employeeList" value="Back" />
+                        <h:commandButton action="#{EmployeeMB.editEmployee(EmployeeMB.employee.id)}" value="Edit"/>
+                    </h:form>
+                </div>
+            </div>            
+        </ui:define>
+    </ui:composition>    
+</h:body>
+</html>
+
