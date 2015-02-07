@@ -2,87 +2,75 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    <h:head>
-        <title>Dental Care</title>
-        <style>
-            .list-table{   
-                border-collapse:collapse;
-                text-align: left;
-            }
-
-            .list-table-header{
-                    text-align:center;
-                    background:none repeat scroll 0 0 #E5E5E5;
-                    border-bottom:1px solid #BBBBBB;
-                    padding:16px;
-            }
-
-            .list-table-odd-row{
-                    text-align:center;
-                    background:none repeat scroll 0 0 #FFFFFFF;
-                    border-top:1px solid #BBBBBB;
-            }
-
-            .list-table-even-row{
-                    text-align:center;
-                    background:none repeat scroll 0 0 #F9F9F9;
-                    border-top:1px solid #BBBBBB;
-            }
-        </style>
-    </h:head>
-    <h:body>
-        <ui:composition template="/layout/commonLayout.xhtml">
-            <ui:define name="content">
-                <h:dataTable value="#{PatientMB.patients}" var="patient"
-                    styleClass="list-table"
-                    headerClass="list-table-header"
-                    rowClasses="list-table-odd-row,list-table-even-row">
-
-                    <h:column>
-                        <f:facet name="header">ID</f:facet>
-                        #{patient.id}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">First Name</f:facet>
-                        #{patient.firstName}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Last Name</f:facet>
-                        #{patient.lastName}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Email</f:facet>
-                        #{patient.email}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Phone</f:facet>
-                        #{patient.phoneNumber}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">City</f:facet>
-                        #{patient.address.city}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">State</f:facet>
-                        #{patient.address.stateName}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Zip Code</f:facet>
-                        #{patient.address.zipCode}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Country</f:facet>
-                        #{patient.address.country}
-                    </h:column>            
-                </h:dataTable>
-
+<h:head>
+    <title>Dental C@re</title>
+</h:head>
+<h:body>
+    <ui:composition template="/layout/mainLayout.xhtml">
+        <ui:define name="content">
+            <h3 class="form-header"><u>Patient List</u></h3>            
+            <div class="panel list-table">
                 <h:form>
-                    <h:commandButton action="index" value="Back"/>
+                    <p:dataTable var="patient" value="#{PatientMB.patientList}" sortMode="single"
+                                 paginator="true" rows="5" paginatorPosition="bottom">
+                        
+                        <p:column sortBy="#{patient.firstName}">  
+                            <f:facet name="header">  
+                                <h:outputText value="First Name"></h:outputText>                            
+                            </f:facet>  
+                            <h:outputText value="#{patient.firstName}"></h:outputText> 
+                        </p:column>
+                        <p:column sortBy="#{patient.lastName}">  
+                            <f:facet name="header">  
+                                <h:outputText value="Last Name"></h:outputText>                            
+                            </f:facet>  
+                            <h:outputText value="#{patient.lastName}"></h:outputText> 
+                        </p:column>
+                        <p:column sortBy="#{patient.email}">  
+                            <f:facet name="header">
+                                <h:outputText value="Email"></h:outputText>
+                            </f:facet>
+                            <h:outputText value="#{patient.email}"></h:outputText>
+                        </p:column>
+                        <p:column sortBy="#{patient.phoneNumber}">  
+                            <f:facet name="header">
+                                <h:outputText value="Phone"></h:outputText>
+                            </f:facet>
+                            <h:outputText value="#{patient.phoneNumber}"></h:outputText>
+                        </p:column>
+                        <p:column sortBy="#{patient.gender}">  
+                            <f:facet name="header">
+                                <h:outputText value="Gender"></h:outputText>
+                            </f:facet>
+                            <h:outputText value="#{patient.gender}"></h:outputText>
+                        </p:column>
+                        <p:column sortBy="#{patient.maritalStatus}">  
+                            <f:facet name="header">
+                                <h:outputText value="Married?"></h:outputText>
+                            </f:facet>
+                            <h:outputText value="#{patient.maritalStatus}"></h:outputText>
+                        </p:column>
+                        <p:column sortBy="#{patient.bloodGroup}">  
+                            <f:facet name="header">
+                                <h:outputText value="Blood Group"></h:outputText>
+                            </f:facet>
+                            <h:outputText value="#{patient.bloodGroup}"></h:outputText>
+                        </p:column>
+                        <p:column width="12%">
+                            <f:facet name="header">
+                                <h:outputText value="Action"></h:outputText>
+                            </f:facet>                        
+                            <h:commandLink action="#{PatientMB.viewPatient(patient.id)}" value="View" /> | 
+                            <h:commandLink action="#{PatientMB.deletePatient(patient.id)}" value="Delete" /> 
+                        </p:column>                        
+                    </p:dataTable>                    
                 </h:form>
-            </ui:define>
-        </ui:composition>
-    </h:body>
+            </div>
+        </ui:define>
+    </ui:composition>
+</h:body>
 </html>
 

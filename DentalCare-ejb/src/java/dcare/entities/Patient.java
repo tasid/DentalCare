@@ -36,6 +36,8 @@ public class Patient extends Person implements Serializable {
     public Patient(String disability) {
         this.disability = disability;
     }
+
+    
     
     public int getId() {
         return id;
