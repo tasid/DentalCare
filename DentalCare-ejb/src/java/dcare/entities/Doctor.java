@@ -17,6 +17,7 @@ import java.util.List;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Size;
 
 @Entity
 @DiscriminatorValue("D")
@@ -26,6 +27,7 @@ public class Doctor extends Person implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String degree;
+    @Size(max = 500)
     private String profileDescription;
     private String speciality;
     private String achievement;
