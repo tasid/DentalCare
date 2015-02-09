@@ -14,10 +14,11 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.FetchType;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.Size;
 
 @Entity
 @DiscriminatorValue("D")
@@ -26,15 +27,16 @@ public class Doctor extends Person implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String degree;
-    @Size(max = 500)
+    @Lob 
+    @Column(length=1000)
     private String profileDescription;
-    private String speciality;
-    private String achievement;
+    private String degree;
     @Temporal(TemporalType.DATE)
     private Date joiningDate;
     private String workStatus;
     private String statusDescription;
+    private String imageUrl; //temporary field, the image will be saved in/retrieved from database
+    private String imageUrlProfileDetail;
             
     @OneToMany(mappedBy = "doctor", fetch = FetchType.LAZY)
     private List<Prescription> prescriptions;
@@ -45,11 +47,9 @@ public class Doctor extends Person implements Serializable {
     public Doctor() {
     }
 
-    public Doctor(String degree, String profileDescription, String speciality, String achievement, Date joiningDate, String workStatus, String statusDescription) {
-        this.degree = degree;
+    public Doctor(String profileDescription, String degree, Date joiningDate, String workStatus, String statusDescription) {
         this.profileDescription = profileDescription;
-        this.speciality = speciality;
-        this.achievement = achievement;
+        this.degree = degree;
         this.joiningDate = joiningDate;
         this.workStatus = workStatus;
         this.statusDescription = statusDescription;
@@ -64,14 +64,6 @@ public class Doctor extends Person implements Serializable {
         this.id = id;
     }
 
-    public String getDegree() {
-        return degree;
-    }
-
-    public void setDegree(String degree) {
-        this.degree = degree;
-    }
-
     public String getProfileDescription() {
         return profileDescription;
     }
@@ -80,20 +72,12 @@ public class Doctor extends Person implements Serializable {
         this.profileDescription = profileDescription;
     }
 
-    public String getSpeciality() {
-        return speciality;
+    public String getDegree() {
+        return degree;
     }
 
-    public void setSpeciality(String speciality) {
-        this.speciality = speciality;
-    }
-
-    public String getAchievement() {
-        return achievement;
-    }
-
-    public void setAchievement(String achievement) {
-        this.achievement = achievement;
+    public void setDegree(String degree) {
+        this.degree = degree;
     }
 
     public Date getJoiningDate() {
@@ -120,6 +104,22 @@ public class Doctor extends Person implements Serializable {
         this.statusDescription = statusDescription;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getImageUrlProfileDetail() {
+        return imageUrlProfileDetail;
+    }
+
+    public void setImageUrlProfileDetail(String imageUrlProfileDetail) {
+        this.imageUrlProfileDetail = imageUrlProfileDetail;
+    }
+
     public List<Prescription> getPrescriptions() {
         return prescriptions;
     }
@@ -140,10 +140,7 @@ public class Doctor extends Person implements Serializable {
     public int hashCode() {
         int hash = 3;
         hash = 61 * hash + this.id;
-        hash = 61 * hash + Objects.hashCode(this.degree);
         hash = 61 * hash + Objects.hashCode(this.profileDescription);
-        hash = 61 * hash + Objects.hashCode(this.speciality);
-        hash = 61 * hash + Objects.hashCode(this.achievement);
         hash = 61 * hash + Objects.hashCode(this.joiningDate);
         hash = 61 * hash + Objects.hashCode(this.workStatus);
         hash = 61 * hash + Objects.hashCode(this.statusDescription);
@@ -165,6 +162,6 @@ public class Doctor extends Person implements Serializable {
 
     @Override
     public String toString() {
-        return "Doctor{" + "id=" + id + ", degree=" + degree + ", profileDescription=" + profileDescription + ", speciality=" + speciality + ", achievement=" + achievement + ", joiningDate=" + joiningDate + ", workStatus=" + workStatus + ", statusDescription=" + statusDescription + '}';
+        return "Doctor{" + "id=" + id + ", profileDescription=" + profileDescription + ", joiningDate=" + joiningDate + ", workStatus=" + workStatus + ", statusDescription=" + statusDescription + '}';
     }
 }

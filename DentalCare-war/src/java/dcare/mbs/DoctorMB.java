@@ -71,6 +71,16 @@ public class DoctorMB {
         }
     }
     
+    public String viewProfileDetail(int id){
+        try {
+            this.doctor = doctorEJB.find(id);
+            return "viewDoctorProfile";
+        }
+        catch(Exception ex) {
+            return "errorPage";
+        }
+    }
+    
     public List<Doctor> getDoctorList() {
         this.doctorList = doctorEJB.findAllDoctors();
         return doctorList;

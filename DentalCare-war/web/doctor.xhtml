@@ -25,12 +25,12 @@
                             </tr>
                             <tr>
                                 <th><h:outputLabel for="firstName" value="First Name" /></th>
-                                <th><h:outputLabel value=":"/></th>
+                                <td><h:outputLabel value=":"/></td>
                                 <td><h:inputText id="firstName" value="#{DoctorMB.doctor.firstName}" /></td>
                             </tr>
                             <tr>
                                 <th><h:outputLabel for="lastName" value="Last Name*"/></th>
-                                <th><h:outputLabel value=":"/></th>
+                                <td><h:outputLabel value=":"/></td>
                                 <td>
                                     <h:inputText id="lastName" value="#{DoctorMB.doctor.lastName}" validatorMessage="Please enter Last Name">
                                         <f:validateRequired for="lastName" />
@@ -40,7 +40,7 @@
                             </tr>
                             <tr>
                                 <th><h:outputLabel for="email" value="Email*"/></th>
-                                <th><h:outputLabel value=":"/></th>
+                                <td><h:outputLabel value=":"/></td>
                                 <td>
                                     <h:inputText id="email" value="#{DoctorMB.doctor.email}" 
                                                  validatorMessage="Please enter a valid Email"
@@ -52,7 +52,7 @@
                             </tr>
                             <tr>
                                 <th><h:outputLabel for="password" value="Password*"/></th>
-                                <th><h:outputLabel value=":"/></th>
+                                <td><h:outputLabel value=":"/></td>
                                 <td>
                                     <h:inputText id="password" value="#{DoctorMB.doctor.password}"  validatorMessage="Please enter a valid Password">
                                         <f:validateRequired for="password" />
@@ -62,7 +62,7 @@
                             </tr>
                             <tr>
                                 <th><h:outputLabel for="phoneNumber" value="Phone Number*"/></th>
-                                <th><h:outputLabel value=":"/></th>
+                                <td><h:outputLabel value=":"/></td>
                                 <td>
                                     <h:inputText id="phoneNumber" value="#{DoctorMB.doctor.phoneNumber}" 
                                                  validatorMessage="Please enter a valid (eg: 111-222-3333) Phone Number"
@@ -74,7 +74,7 @@
                             </tr>
                             <tr>
                                 <th><h:outputLabel for="address" value="Address*"/></th>
-                                <th><h:outputLabel value=":"/></th>
+                                <td><h:outputLabel value=":"/></td>
                                 <td>
                                     <h:inputTextarea id="address" cols="35" rows="3" value="#{DoctorMB.doctor.address}" validatorMessage="Please enter Address">
                                         <f:validateRequired for="address"/>
@@ -84,37 +84,31 @@
                             </tr>
                             <tr>
                                 <th><h:outputLabel for="degree" value="Degree*"/></th>
-                                <th><h:outputLabel value=":"/></th>
-                                <td>
-                                    <h:inputText id="degree" value="#{DoctorMB.doctor.degree}" validatorMessage="Please enter Degree">
+                                <td><h:outputLabel value=":"/></td>
+                                <td><h:inputText id="degree" value="#{DoctorMB.doctor.degree}" validatorMessage="Please enter Degree">
                                         <f:validateRequired for="degree"/>
                                     </h:inputText>&nbsp;
                                     <h:message for="degree" errorClass="error-message" />
-                                </td>
+                                </td> 
                             </tr>
                             <tr>
                                 <th><h:outputLabel for="profileDescription" value="Profile Description"/></th>
-                                <th><h:outputLabel value=":"/></th>
-                                <td><h:inputTextarea id="profileDescription" cols="35" rows="3" value="#{DoctorMB.doctor.profileDescription}"/></td>
+                                <td><h:outputLabel value=":"/></td>
+                                <td><h:inputTextarea id="profileDescription" cols="50" rows="8" value="#{DoctorMB.doctor.profileDescription}"/></td>
                             </tr>
                             <tr>
-                                <th><h:outputLabel for="speciality" value="Speciality*"/></th>
-                                <th><h:outputLabel value=":"/></th>
-                                <td>
-                                    <h:inputTextarea id="speciality" cols="35" rows="3" value="#{DoctorMB.doctor.speciality}"  validatorMessage="Please enter Speciality">
-                                        <f:validateRequired for="speciality"/>
-                                    </h:inputTextarea>&nbsp;
-                                    <h:message for="speciality" errorClass="error-message text-align-top" />
-                                </td>
+                                <th><h:outputLabel for="imageUrl" value="Image Url"/></th>
+                                <td><h:outputLabel value=":"/></td>
+                                <td><h:inputText id="imageUrl" value="#{DoctorMB.doctor.imageUrl}"/></td>
                             </tr>
                             <tr>
-                                <th><h:outputLabel for="achievement" value="Achievement"/></th>
-                                <th><h:outputLabel value=":"/></th>
-                                <td><h:inputTextarea id="achievement" cols="35" rows="3" value="#{DoctorMB.doctor.achievement}"/></td>
+                                <th><h:outputLabel for="imageUrlProfileDetail" value="Image Url (Detail)"/></th>
+                                <td><h:outputLabel value=":"/></td>
+                                <td><h:inputText id="imageUrlProfileDetail" value="#{DoctorMB.doctor.imageUrlProfileDetail}"/></td>
                             </tr>
                             <tr>
                                 <th><h:outputLabel for="gender" value="Gender"/></th>
-                                <th><h:outputLabel value=":"/></th>
+                                <td><h:outputLabel value=":"/></td>
                                 <td>
                                     <h:selectOneMenu id="gender" value="#{DoctorMB.doctor.gender}">
                                         <f:selectItems value="#{UtilityMB.genders}" />
@@ -123,7 +117,7 @@
                             </tr>
                             <tr>
                                 <th><h:outputLabel for="maritalStatus" value="Marital Status"/></th>
-                                <th><h:outputLabel value=":"/></th>
+                                <td><h:outputLabel value=":"/></td>
                                 <td>
                                     <h:selectOneMenu id="maritalStatus" value="#{DoctorMB.doctor.maritalStatus}">
                                         <f:selectItems value="#{UtilityMB.maritalStatuses}" var="mStatus" itemLabel="#{mStatus}" itemValue="#{mStatus}" />                                        
@@ -132,7 +126,7 @@
                             </tr>                            
                             <tr>
                                 <th><h:outputLabel for="bloodGroup" value="Blood Group"/></th>
-                                <th><h:outputLabel value=":"/></th>
+                                <td><h:outputLabel value=":"/></td>
                                 <td>
                                     <h:selectOneMenu id="bloodGroup" value="#{DoctorMB.doctor.bloodGroup}">
                                         <f:selectItem itemValue="A+" itemLabel="A+" />                                        
@@ -148,7 +142,7 @@
                             </tr>
                             <tr>
                                 <th><h:outputLabel for="userRole" value="User Role"/></th>
-                                <th><h:outputLabel value=":"/></th>
+                                <td><h:outputLabel value=":"/></td>
                                 <td>
                                     <h:selectOneMenu id="userRole" value="#{DoctorMB.doctor.userRole}">
                                         <f:selectItems value="#{UtilityMB.userRoles}" var="uRole" itemLabel="#{uRole}" itemValue="#{uRole}" />
@@ -157,7 +151,7 @@
                             </tr>
                             <tr>
                                 <th><h:outputLabel for="workStatus" value="Status"/></th>
-                                <th><h:outputLabel value=":"/></th>
+                                <td><h:outputLabel value=":"/></td>
                                 <td>
                                     <h:selectOneMenu id="workStatus" value="#{DoctorMB.doctor.workStatus}">
                                         <f:selectItems value="#{UtilityMB.workStatuses}" var="wStatus" itemLabel="#{wStatus}" itemValue="#{wStatus}" />
@@ -166,7 +160,7 @@
                             </tr>
                             <tr>
                                 <th><h:outputLabel for="statusDescription" value="Status Description"/></th>
-                                <th><h:outputLabel value=":"/></th>
+                                <td><h:outputLabel value=":"/></td>
                                 <td><h:inputTextarea id="statusDescription" cols="35" rows="3" value="#{DoctorMB.doctor.statusDescription}"/></td>
                             </tr>
                         </table>

@@ -38,6 +38,7 @@ table.entry-form > tbody > tr > th,
 table.view-form > tbody > tr > th {
     font-weight: bold;
     padding-left: 10px;
+    min-width: 11em;
 }
 
 table.entry-form > tbody > tr:first-child > th,
@@ -61,7 +62,9 @@ table.view-form > tbody > tr:first-child > td {
 
 .control-table {
     float: left;
+    width: 75%;
 }
+
 .profile-picture {
     border: 1px solid #D0E9C6;
     width: 200px;
@@ -69,6 +72,47 @@ table.view-form > tbody > tr:first-child > td {
     float: right;
     margin: 15px;
     padding: 2px;
+}
+
+.picture-box {
+    border: 1px solid #D0E9C6;
+    width: 160px;
+    height: 160px;
+    float: left;
+    margin: 15px;
+    padding: 4px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.profile-detail {
+    clear: both;
+    margin: 10px;
+    text-align: justify;
+}
+
+.profile-detail-picture {
+    background-position: top left; 
+    background-repeat: no-repeat;
+    margin: 10px;
+    width: 174px;
+    height: 174px;
+    float: left;
+    border: 1px solid grey;
+}
+
+.profile-detail-title {
+    margin: 5px 10px 10px;
+    font-weight: bold;
+}
+
+.confirmation-message {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.2em;
+    font-style: italic;
+    margin: 50px auto;
 }
 
 .error-message {

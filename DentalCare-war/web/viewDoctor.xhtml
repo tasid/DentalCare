@@ -16,62 +16,47 @@
                     <table class="view-form">
                         <tr>
                             <th><h:outputLabel value="First Name"/></th>
-                            <th><h:outputLabel value=":"/></th>
+                            <td><h:outputLabel value=":"/></td>
                             <td><h:outputLabel value="#{DoctorMB.doctor.firstName}"/></td>
                         </tr>
                         <tr>
                             <th><h:outputLabel value="Last Name"/></th>
-                            <th><h:outputLabel value=":"/></th>
+                            <td><h:outputLabel value=":"/></td>
                             <td><h:outputLabel value="#{DoctorMB.doctor.lastName}"/></td>
                         </tr>
                         <tr>
                             <th><h:outputLabel value="Email"/></th>
-                            <th><h:outputLabel value=":"/></th>
+                            <td><h:outputLabel value=":"/></td>
                             <td><h:outputLabel value="#{DoctorMB.doctor.email}"/></td>
                         </tr>
                         <tr>
                             <th><h:outputLabel value="Password"/></th>
-                            <th><h:outputLabel value=":"/></th>
+                            <td><h:outputLabel value=":"/></td>
                             <td><h:outputLabel value="#{DoctorMB.doctor.password}"/></td>
                         </tr>
                         <tr>
                             <th><h:outputLabel value="Phone"/></th>
-                            <th><h:outputLabel value=":"/></th>
+                            <td><h:outputLabel value=":"/></td>
                             <td><h:outputLabel value="#{DoctorMB.doctor.phoneNumber}"/></td>
                         </tr>
                         <tr>
                             <th><h:outputLabel value="Blod Group"/></th>
-                            <th><h:outputLabel value=":"/></th>
+                            <td><h:outputLabel value=":"/></td>
                             <td><h:outputLabel value="#{DoctorMB.doctor.bloodGroup}"/></td>
                         </tr>
                         <tr>
                             <th><h:outputLabel value="Address"/></th>
-                            <th><h:outputLabel value=":"/></th>
+                            <td><h:outputLabel value=":"/></td>
                             <td><h:outputLabel value="#{DoctorMB.doctor.address}"/></td>
                         </tr>
                         <tr>
-                            <th><h:outputLabel value="Degree"/></th>
-                            <th><h:outputLabel value=":"/></th>
-                            <td><h:outputLabel value="#{DoctorMB.doctor.degree}"/></td>
-                        </tr>
-                        <tr>
                             <th><h:outputLabel value="Profile Description"/></th>
-                            <th><h:outputLabel value=":"/></th>
+                            <td><h:outputLabel value=":"/></td>
                             <td><h:outputLabel value="#{DoctorMB.doctor.profileDescription}"/></td>
                         </tr>
                         <tr>
-                            <th><h:outputLabel value="Speciality"/></th>
-                            <th><h:outputLabel value=":"/></th>
-                            <td><h:outputLabel value="#{DoctorMB.doctor.speciality}"/></td>
-                        </tr>
-                        <tr>
-                            <th><h:outputLabel value="Achievement"/></th>
-                            <th><h:outputLabel value=":"/></th>
-                            <td><h:outputLabel value="#{DoctorMB.doctor.achievement}"/></td>
-                        </tr>
-                        <tr>
                             <th><h:outputLabel value="Status"/></th>
-                            <th><h:outputLabel value=":"/></th>
+                            <td><h:outputLabel value=":"/></td>
                             <td><h:outputLabel value="#{(DoctorMB.doctor.workStatus != '' or DoctorMB.doctor.workStatus != null) ? DoctorMB.doctor.workStatus : DoctorMB.doctor.statusDescription}"/></td>
                         </tr>
                     </table>  

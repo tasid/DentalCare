@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ps="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+    <title>Dental C@re</title>
+</h:head>
+<h:body>
+    <ui:composition template="/layout/mainLayout.xhtml">
+        <ui:define name="content">            
+            <h3 class="form-header"><u>Make an Appointment</u></h3>            
+            <div class="panel">
+                <h:form>
+                    <div class="control-table">
+                        <table class="entry-form">
+                            <tr>
+                                <th><h:outputLabel for="doctorId" value="Select Doctor" /></th>
+                                <td><h:outputLabel value=":"/></td>
+                                <td>
+                                    <h:selectOneMenu id="doctorId" value="test">
+                                        <f:selectItems value="#{DoctorMB.doctorList}" var="doctor" itemLabel="#{doctor.firstName} #{doctor.lastName}" itemValue="#{doctor.id}" />                                        
+                                    </h:selectOneMenu>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <h4><u>Select a Date and Time</u></h4>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><h:outputLabel for="problemDescription" value="Problem*"/></th>
+                                <td><h:outputLabel value=":"/></td>
+                                <td>
+                                    <h:inputTextarea id="problemDescription" value="#{DoctorMB.doctor.lastName}" cols="35" rows="5" validatorMessage="Please describe your problem">
+                                        <f:validateRequired for="problemDescription" />
+                                    </h:inputTextarea>&nbsp;                                     
+                                    <h:message for="problemDescription" errorClass="error-message" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="button-button-panel">
+                        <h:commandButton action="#{AppointmentMB.save()}" value="Submit"/>
+                        <h:commandButton action="index" value="Cancel" immediate="true"/>
+                    </div>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>    
+</h:body>
+</html>
+
