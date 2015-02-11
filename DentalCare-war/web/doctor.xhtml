@@ -97,6 +97,15 @@
                                 <td><h:inputTextarea id="profileDescription" cols="50" rows="8" value="#{DoctorMB.doctor.profileDescription}"/></td>
                             </tr>
                             <tr>
+                                <th><h:outputLabel for="joiningDate" value="Joining Date"/></th>
+                                <th><h:outputLabel value=":"/></th>
+                                <td>
+                                    <h:inputText id="joiningDate" class="datepicker" value="#{DoctorMB.doctor.joiningDate}">
+                                        <f:convertDateTime pattern="MM-dd-yyyy"/>
+                                    </h:inputText>
+                                </td>
+                            </tr>
+                            <tr>
                                 <th><h:outputLabel for="imageUrl" value="Image Url"/></th>
                                 <td><h:outputLabel value=":"/></td>
                                 <td><h:inputText id="imageUrl" value="#{DoctorMB.doctor.imageUrl}"/></td>
@@ -123,7 +132,16 @@
                                         <f:selectItems value="#{UtilityMB.maritalStatuses}" var="mStatus" itemLabel="#{mStatus}" itemValue="#{mStatus}" />                                        
                                     </h:selectOneMenu>
                                 </td>
-                            </tr>                            
+                            </tr>    
+                            <tr>
+                                <th><h:outputLabel for="dateOfBirth" value="Date of Birth"/></th>
+                                <th><h:outputLabel value=":"/></th>
+                                <td>
+                                    <h:inputText id="dateOfBirth" class="datepicker" value="#{DoctorMB.doctor.dateOfBirth}">
+                                        <f:convertDateTime pattern="MM-dd-yyyy"/>
+                                    </h:inputText>
+                                </td>
+                            </tr>     
                             <tr>
                                 <th><h:outputLabel for="bloodGroup" value="Blood Group"/></th>
                                 <td><h:outputLabel value=":"/></td>

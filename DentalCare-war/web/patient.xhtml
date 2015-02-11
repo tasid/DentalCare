@@ -122,13 +122,12 @@
                                 </td>
                             </tr>                                
                             <tr>
-                                <th><h:outputLabel for="dateOfBirth" value="Date of Birth*"/></th>
+                                <th><h:outputLabel for="dateOfBirth" value="Date of Birth"/></th>
                                 <th><h:outputLabel value=":"/></th>
                                 <td>
-                                    <h:inputText id="dateOfBirth" value="#{PatientMB.patient.dateOfBirth}"  validatorMessage="Please enter Date of Birth">
-                                        <f:validateRequired for="lastName" />
-                                    </h:inputText>&nbsp;                                     
-                                    <h:message for="dateOfBirth" errorClass="error-message" />
+                                    <h:inputText id="dateOfBirth" class="datepicker" value="#{PatientMB.patient.dateOfBirth}">
+                                        <f:convertDateTime pattern="MM-dd-yyyy"/>
+                                    </h:inputText>
                                 </td>
                             </tr>
                         </table>
@@ -139,6 +138,19 @@
                     </div>
                 </h:form>
             </div>
+            <script type="text/javascript">
+//                $(function() {
+//                    $(".datepicker")
+//                            .attr("readonly", "readonly")
+//                            .datepicker({
+//                                dateFormat : 'mm-dd-yy',
+//                                changeMonth : true,
+//                                changeYear : true,
+//                                yearRange: "-130:+0",
+//                                maxDate: new Date()
+//                            });
+//                });
+            </script>
         </ui:define>
     </ui:composition>    
 </h:body>
