@@ -24,8 +24,10 @@ public class Appointment implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date appointmentDate;
+    @Temporal(TemporalType.TIME)
+    private Date appointmentTime;
     private String referredBy;
     private String problemDescription;
     @Temporal(TemporalType.TIMESTAMP)
@@ -51,8 +53,9 @@ public class Appointment implements Serializable {
     public Appointment() {
     }
 
-    public Appointment(Date appointmentDate, String referredBy, String problemDescription, Date createdAt, Date modifiedAt, AppointmentStatusEnum appointmentStatus) {
+    public Appointment(Date appointmentDate, Date appointmentTime, String referredBy, String problemDescription, Date createdAt, Date modifiedAt, AppointmentStatusEnum appointmentStatus) {
         this.appointmentDate = appointmentDate;
+        this.appointmentTime = appointmentTime;
         this.referredBy = referredBy;
         this.problemDescription = problemDescription;
         this.createdAt = createdAt;
@@ -74,6 +77,14 @@ public class Appointment implements Serializable {
 
     public void setAppointmentDate(Date appointmentDate) {
         this.appointmentDate = appointmentDate;
+    }
+
+    public Date getAppointmentTime() {
+        return appointmentTime;
+    }
+
+    public void setAppointmentTime(Date appointmentTime) {
+        this.appointmentTime = appointmentTime;
     }
 
     public String getReferredBy() {

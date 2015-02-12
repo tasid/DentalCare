@@ -27,18 +27,76 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="3">
-                                    <h4><u>Select a Date and Time</u></h4>
+                                <th><h:outputLabel for="appointmentDate" value="Appointment Date*"/></th>
+                                <td><h:outputLabel value=":"/></td>
+                                <td>
+                                    <h:inputText id="appointmentDate" class="datepicker" value="#{AppointmentMB.appointment.appointmentDate}">
+                                        <f:convertDateTime pattern="MM-dd-yyyy"/>
+                                    </h:inputText>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><h:outputLabel for="appointmentTime" value="Appointment Time*" /></th>
+                                <td><h:outputLabel value=":"/></td>
+                                <td>
+                                    <h:selectOneMenu id="appointmentTime" value="#{AppointmentMB.appointment.appointmentTime}">
+                                        <f:selectItem itemLabel="08:00 AM" itemValue="08:00 AM" />                                        
+                                        <f:selectItem itemLabel="08:45 AM" itemValue="08:45 AM" />                                        
+                                        <f:selectItem itemLabel="09:30 AM" itemValue="09:30 AM" />                                        
+                                        <f:selectItem itemLabel="10:15 AM" itemValue="10:15 AM" />                                        
+                                        <f:selectItem itemLabel="11:00 AM" itemValue="11:00 AM" />                                        
+                                        <f:selectItem itemLabel="11:45 AM" itemValue="11:45 AM" />                                        
+                                        <f:selectItem itemLabel="01:00 PM" itemValue="01:00 PM" />                                        
+                                        <f:selectItem itemLabel="01:45 PM" itemValue="01:45 PM" />                                        
+                                        <f:selectItem itemLabel="02:30 PM" itemValue="02:30 PM" />                                        
+                                        <f:selectItem itemLabel="03:15 PM" itemValue="03:15 PM" />                                        
+                                        <f:selectItem itemLabel="04:00 PM" itemValue="04:00 PM" />                                        
+                                        <f:selectItem itemLabel="04:45 PM" itemValue="04:45 PM" />                                        
+                                        <f:selectItem itemLabel="05:30 PM" itemValue="05:30 PM" />                                        
+                                        <f:selectItem itemLabel="06:15 PM" itemValue="06:15 PM" />                                        
+                                    </h:selectOneMenu>
                                 </td>
                             </tr>
                             <tr>
                                 <th><h:outputLabel for="problemDescription" value="Problem*"/></th>
                                 <td><h:outputLabel value=":"/></td>
                                 <td>
-                                    <h:inputTextarea id="problemDescription" value="#{DoctorMB.doctor.lastName}" cols="35" rows="5" validatorMessage="Please describe your problem">
+                                    <h:inputTextarea id="problemDescription" value="#{AppointmentMB.appointment.problemDescription}" cols="35" rows="5" validatorMessage="Please describe your problem">
                                         <f:validateRequired for="problemDescription" />
                                     </h:inputTextarea>&nbsp;                                     
                                     <h:message for="problemDescription" errorClass="error-message" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">&nbsp;</td>
+                                <td>
+                                    <h4><u>Only the Green colored are available</u></h4>
+                                    <table class="available-times">
+                                        <tr>
+                                            <td>08:00 AM</td>
+                                            <td>08:45 AM</td>
+                                            <td>09:30 AM</td>
+                                            <td>10:15 AM</td>
+                                        </tr>
+                                        <tr>
+                                            <td>11:00 AM</td>
+                                            <td>11:45 AM</td>
+                                            <td>01:00 PM</td>
+                                            <td>01:45 PM</td>
+                                        </tr>
+                                        <tr>
+                                            <td>02:30 PM</td>
+                                            <td>03:15 PM</td>
+                                            <td>04:00 PM</td>
+                                            <td>04:45 PM</td>
+                                        </tr>
+                                        <tr>
+                                            <td>05:30 PM</td>
+                                            <td>06:15 PM</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                        </tr>
+                                    </table>
                                 </td>
                             </tr>
                         </table>

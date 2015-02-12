@@ -126,3 +126,11 @@ table.view-form > tbody > tr:first-child > td {
     text-align: left;
     padding-left: 10px;
 }
+
+.available-times {
+    border: 1px solid grey;
+}
+
+.available-times tr td {
+    padding: 10px;
+}
