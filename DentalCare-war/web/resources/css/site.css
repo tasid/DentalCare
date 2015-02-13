@@ -66,12 +66,12 @@ table.view-form > tbody > tr:first-child > td {
 }
 
 .profile-picture {
-    border: 1px solid #D0E9C6;
-    width: 200px;
-    height: 200px;
+    border: 1px solid #D0E9C6;   
     float: right;
+    min-height: 180px;
+    min-width: 180px;
     margin: 15px;
-    padding: 2px;
+    padding: 3px;
 }
 
 .picture-box {

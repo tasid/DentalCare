@@ -25,12 +25,12 @@
                             </tr>
                             <tr>
                                 <th><h:outputLabel for="firstName" value="First Name" /></th>
-                                <th><h:outputLabel value=":"/></th>
+                                <td><h:outputLabel value=":"/></td>
                                 <td><h:inputText id="firstName" value="#{PatientMB.patient.firstName}" /></td>
                             </tr>
                             <tr>
                                 <th><h:outputLabel for="lastName" value="Last Name*"/></th>
-                                <th><h:outputLabel value=":"/></th>
+                                <td><h:outputLabel value=":"/></td>
                                 <td>
                                     <h:inputText id="lastName" value="#{PatientMB.patient.lastName}" validatorMessage="Please enter Last Name">
                                         <f:validateRequired for="lastName" />
@@ -40,7 +40,7 @@
                             </tr>
                             <tr>
                                 <th><h:outputLabel for="email" value="Email*"/></th>
-                                <th><h:outputLabel value=":"/></th>
+                                <td><h:outputLabel value=":"/></td>
                                 <td>
                                     <h:inputText id="email" value="#{PatientMB.patient.email}" 
                                                  validatorMessage="Please enter a valid Email"
@@ -52,7 +52,7 @@
                             </tr>
                             <tr>
                                 <th><h:outputLabel for="password" value="Password*"/></th>
-                                <th><h:outputLabel value=":"/></th>
+                                <td><h:outputLabel value=":"/></td>
                                 <td>
                                     <h:inputText id="password" value="#{PatientMB.patient.password}"  validatorMessage="Please enter a valid Password">
                                         <f:validateRequired for="password" />
@@ -62,7 +62,7 @@
                             </tr>
                             <tr>
                                 <th><h:outputLabel for="phoneNumber" value="Phone Number*"/></th>
-                                <th><h:outputLabel value=":"/></th>
+                                <td><h:outputLabel value=":"/></td>
                                 <td>
                                     <h:inputText id="phoneNumber" value="#{PatientMB.patient.phoneNumber}" 
                                                  validatorMessage="Please enter a valid (eg: 111-222-3333) Phone Number"
@@ -74,7 +74,7 @@
                             </tr>
                             <tr>
                                 <th><h:outputLabel for="address" value="Address*"/></th>
-                                <th><h:outputLabel value=":"/></th>
+                                <td><h:outputLabel value=":"/></td>
                                 <td>
                                     <h:inputTextarea id="address" cols="35" rows="3" value="#{PatientMB.patient.address}" validatorMessage="Please enter Address">
                                         <f:validateRequired for="address"/>
@@ -84,12 +84,12 @@
                             </tr>
                             <tr>
                                 <th><h:outputLabel for="disability" value="Disabilitiy"/></th>
-                                <th><h:outputLabel value=":"/></th>
+                                <td><h:outputLabel value=":"/></td>
                                 <td><h:inputTextarea id="disability" cols="35" rows="3" value="#{PatientMB.patient.disability}"/></td>
                             </tr>
                             <tr>
                                 <th><h:outputLabel for="bloodGroup" value="Blood Group"/></th>
-                                <th><h:outputLabel value=":"/></th>
+                                <td><h:outputLabel value=":"/></td>
                                 <td>
                                     <h:selectOneMenu id="bloodGroup" value="#{PatientMB.patient.bloodGroup}">
                                         <f:selectItem itemValue="A+" itemLabel="A+" />                                        
@@ -105,7 +105,7 @@
                             </tr>
                             <tr>
                                 <th><h:outputLabel for="gender" value="Gender"/></th>
-                                <th><h:outputLabel value=":"/></th>
+                                <td><h:outputLabel value=":"/></td>
                                 <td>
                                     <h:selectOneMenu id="gender" value="#{PatientMB.patient.gender}">
                                         <f:selectItems value="#{UtilityMB.genders}" />
@@ -114,7 +114,7 @@
                             </tr>
                             <tr>
                                 <th><h:outputLabel for="maritalStatus" value="Marital Status"/></th>
-                                <th><h:outputLabel value=":"/></th>
+                                <td><h:outputLabel value=":"/></td>
                                 <td>
                                     <h:selectOneMenu id="maritalStatus" value="#{PatientMB.patient.maritalStatus}">
                                         <f:selectItems value="#{UtilityMB.maritalStatuses}" var="mStatus" itemLabel="#{mStatus}" itemValue="#{mStatus}" />                                        
@@ -123,9 +123,9 @@
                             </tr>                                
                             <tr>
                                 <th><h:outputLabel for="dateOfBirth" value="Date of Birth"/></th>
-                                <th><h:outputLabel value=":"/></th>
+                                <td><h:outputLabel value=":"/></td>
                                 <td>
-                                    <h:inputText id="dateOfBirth" class="datepicker" value="#{PatientMB.patient.dateOfBirth}">
+                                    <h:inputText id="dateOfBirth" class="datepicker-upto-current-date" value="#{PatientMB.patient.dateOfBirth}">
                                         <f:convertDateTime pattern="MM-dd-yyyy"/>
                                     </h:inputText>
                                 </td>
@@ -138,19 +138,6 @@
                     </div>
                 </h:form>
             </div>
-            <script type="text/javascript">
-//                $(function() {
-//                    $(".datepicker")
-//                            .attr("readonly", "readonly")
-//                            .datepicker({
-//                                dateFormat : 'mm-dd-yy',
-//                                changeMonth : true,
-//                                changeYear : true,
-//                                yearRange: "-130:+0",
-//                                maxDate: new Date()
-//                            });
-//                });
-            </script>
         </ui:define>
     </ui:composition>    
 </h:body>

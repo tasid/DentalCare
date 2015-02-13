@@ -9,8 +9,9 @@ body {
     position: relative;
 }
 html, div#page {
-    background-image:url("../resources/image/siteback.png");
-    background-repeat:repeat-x;
+    /*background-image:url("../resources/image/siteback.png");*/
+    background: url("../resources/image/siteback.png") repeat-x scroll 0px -100px #CED5DB;
+    /*background-repeat:repeat-x;*/
 }
 div#header {
     min-height: 20%;

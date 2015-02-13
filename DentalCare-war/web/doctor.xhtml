@@ -98,7 +98,7 @@
                             </tr>
                             <tr>
                                 <th><h:outputLabel for="joiningDate" value="Joining Date"/></th>
-                                <th><h:outputLabel value=":"/></th>
+                                <td><h:outputLabel value=":"/></td>
                                 <td>
                                     <h:inputText id="joiningDate" class="datepicker" value="#{DoctorMB.doctor.joiningDate}">
                                         <f:convertDateTime pattern="MM-dd-yyyy"/>
@@ -135,9 +135,9 @@
                             </tr>    
                             <tr>
                                 <th><h:outputLabel for="dateOfBirth" value="Date of Birth"/></th>
-                                <th><h:outputLabel value=":"/></th>
+                                <td><h:outputLabel value=":"/></td>
                                 <td>
-                                    <h:inputText id="dateOfBirth" class="datepicker" value="#{DoctorMB.doctor.dateOfBirth}">
+                                    <h:inputText id="dateOfBirth" class="datepicker-upto-current-date" value="#{DoctorMB.doctor.dateOfBirth}">
                                         <f:convertDateTime pattern="MM-dd-yyyy"/>
                                     </h:inputText>
                                 </td>
@@ -184,7 +184,7 @@
                         </table>
                     </div>
                     <div class="profile-picture">
-                        
+                        <img src="#{DoctorMB.doctor.imageUrlProfileDetail}" alt="#{DoctorMB.doctor.firstName} #{DoctorMB.doctor.lastName}"/>
                     </div>
                     <div class="button-button-panel">
                         <h:commandButton action="#{DoctorMB.save()}" value="Save"/>

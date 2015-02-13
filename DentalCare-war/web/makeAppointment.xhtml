@@ -30,7 +30,7 @@
                                 <th><h:outputLabel for="appointmentDate" value="Appointment Date*"/></th>
                                 <td><h:outputLabel value=":"/></td>
                                 <td>
-                                    <h:inputText id="appointmentDate" class="datepicker" value="#{AppointmentMB.appointment.appointmentDate}">
+                                    <h:inputText id="appointmentDate" class="datepicker-from-current-date" value="#{AppointmentMB.appointment.appointmentDate}">
                                         <f:convertDateTime pattern="MM-dd-yyyy"/>
                                     </h:inputText>
                                 </td>
@@ -71,7 +71,7 @@
                                 <td colspan="2">&nbsp;</td>
                                 <td>
                                     <h4><u>Only the Green colored are available</u></h4>
-                                    <table class="available-times">
+                                    <table class="table table-bordered">
                                         <tr>
                                             <td>08:00 AM</td>
                                             <td>08:45 AM</td>

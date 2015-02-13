@@ -32,7 +32,7 @@ public class AppointmentMB {
     
     public String save() {
         try {
-            //appointmentEJB.save(appointment);
+            appointmentEJB.save(appointment);
             return "appointmentConfirmation";
         }
         catch(Exception ex) {            
