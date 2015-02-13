@@ -127,8 +127,19 @@ table.view-form > tbody > tr:first-child > td {
     padding-left: 10px;
 }
 
+.schedule-table {
+    border-collapse: inherit;
+    border-width: 3px;
+}
+
 .available-times {
-    border: 1px solid grey;
+    background-color: green;
+    color: wheat;
+}
+
+.reserved-times {
+    background-color: #E2C2E2;
+    color: blueviolet;
 }
 
 .available-times tr td {
