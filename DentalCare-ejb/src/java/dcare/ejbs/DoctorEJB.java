@@ -52,6 +52,18 @@ public class DoctorEJB {
         return query.getResultList();
     }
 
+    public List<Doctor> findDoctorsByStatus(UtilityClass.WorkStatusEnum workingStatus) {
+        CriteriaBuilder builder = em.getCriteriaBuilder();
+        CriteriaQuery<Doctor> criQuery = builder.createQuery(Doctor.class);
+        
+        Root<Doctor> doctor = criQuery.from(Doctor.class);
+        criQuery.where(builder.equal(doctor.get(Doctor_.workStatus), workingStatus.toString()));
+        criQuery.select(doctor);
+        
+        TypedQuery<Doctor> query = em.createQuery(criQuery);
+        return query.getResultList();
+    }
+    
     public void delete(Doctor doctor) {
         doctor = em.merge(doctor);
         em.remove(doctor);

@@ -14,9 +14,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @DiscriminatorValue("T")
+@XmlRootElement
 public class Patient extends Person implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -55,6 +58,7 @@ public class Patient extends Person implements Serializable {
         this.disability = disability;
     }
 
+    @XmlTransient
     public List<Prescription> getPrescriptions() {
         return prescriptions;
     }

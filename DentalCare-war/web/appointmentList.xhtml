@@ -15,7 +15,7 @@
             <div class="panel list-table">
                 <h:form>
                     <p:dataTable var="appointment" value="#{AppointmentMB.appointmentList}" sortMode="single"
-                                 paginator="true" rows="5" paginatorPosition="bottom">
+                                 paginator="true" rows="10" paginatorPosition="bottom">
                         
                         <p:column sortBy="#{appointment.patient.firstName} #{appointment.patient.lastName}">  
                             <f:facet name="header">  
@@ -33,11 +33,13 @@
                             <f:facet name="header">  
                                 <h:outputText value="Appointment Date"></h:outputText>                            
                             </f:facet>  
-                            <h:outputText value="#{appointment.appointmentDate}"></h:outputText> 
+                            <h:outputText value="#{appointment.appointmentDate}">
+                                <f:convertDateTime pattern="MM-dd-yyyy" />
+                            </h:outputText> 
                         </p:column>
                         <p:column sortBy="#{appointment.appointmentTime}">  
                             <f:facet name="header">  
-                                <h:outputText value="Appointment Time"></h:outputText>                            
+                                <h:outputText value="Appointment Time"></h:outputText>
                             </f:facet>  
                             <h:outputText value="#{appointment.appointmentTime}"></h:outputText> 
                         </p:column>
@@ -45,14 +47,14 @@
                             <f:facet name="header">  
                                 <h:outputText value="Status"></h:outputText>                            
                             </f:facet>  
-                            <h:outputText value="#{appointmentStatus}"></h:outputText> 
+                            <h:outputText value="#{appointment.appointmentStatus}"></h:outputText> 
                         </p:column>
                         <p:column width="12%">
                             <f:facet name="header">
                                 <h:outputText value="Action"></h:outputText>
                             </f:facet>                        
-                            <h:commandLink action="#{EmployeeMB.viewEmployee(employee.id)}" value="View" /> | 
-                            <h:commandLink action="#{EmployeeMB.deleteEmployee(employee.id)}" value="Delete" /> 
+                            <h:commandLink action="#{AppointmentMB.makeAppointmentOffline(appointment.id)}" value="View" /> | 
+                            <h:commandLink action="#{AppointmentMB.deleteAppointment(appointment.id)}" value="Delete" /> 
                         </p:column>                        
                     </p:dataTable>                    
                 </h:form>

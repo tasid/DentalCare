@@ -21,6 +21,7 @@ public class DoctorMB {
 
     private Doctor doctor;
     private List<Doctor> doctorList;
+    private List<Doctor> activeDoctorList;
 
     public DoctorMB() { }
     
@@ -28,6 +29,7 @@ public class DoctorMB {
     public void init() {
         doctor = new Doctor();
         doctorList = new ArrayList();
+        activeDoctorList = new ArrayList();
     }
     
     public String save() {
@@ -90,6 +92,11 @@ public class DoctorMB {
         this.doctorList = doctorList;
     }
 
+    public List<Doctor> getActiveDoctorList() {
+        this.activeDoctorList = doctorEJB.findDoctorsByStatus(UtilityClass.WorkStatusEnum.Active);
+        return activeDoctorList;
+    }
+    
     public Doctor getDoctor(int id) {
         Doctor doctor = doctorEJB.find(id);
         return doctor;

@@ -16,14 +16,25 @@
             <div class="panel">
                 <h:form>
                     <div class="control-table">
+                        <h:inputHidden value="#{AppointmentMB.appointment.id}" />
                         <table class="entry-form">
                             <tr>
                                 <th><h:outputLabel for="doctorId" value="Select Doctor" /></th>
                                 <td><h:outputLabel value=":"/></td>
                                 <td>
                                     <h:selectOneMenu id="doctorId" value="#{AppointmentMB.appointment.doctorId}">
-                                        <f:selectItems value="#{DoctorMB.doctorList}" var="doctor" 
+                                        <f:selectItems value="#{DoctorMB.activeDoctorList}" var="doctor" 
                                                        itemLabel="#{doctor.firstName} #{doctor.lastName}" itemValue="#{doctor.id}" />                                        
+                                    </h:selectOneMenu>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><h:outputLabel for="patientId" value="Select Patient" /></th>
+                                <td><h:outputLabel value=":"/></td>
+                                <td>
+                                    <h:selectOneMenu id="patientId" class="patient-list-online-appointment" value="#{AppointmentMB.appointment.patientId}">
+                                        <f:selectItems value="#{PatientMB.patientList}" var="patient" 
+                                                       itemLabel="#{patient.firstName} #{patient.lastName}" itemValue="#{patient.id}" />                                        
                                     </h:selectOneMenu>
                                 </td>
                             </tr>
@@ -73,6 +84,7 @@
                                 <td colspan="2">&nbsp;</td>
                                 <td>
                                     <h4><u>Only the Green colored are available</u></h4>
+                                    <h3>Reserved Appointments: #{AppointmentMB.reservedAppointmentList.size()}</h3>
                                     <table class="table table-bordered schedule-table">
                                         <tr>
                                             <td class="available-times">08:00 AM</td>
@@ -106,7 +118,8 @@
                                 <td><h:outputLabel value=":"/></td>
                                 <td>
                                     <h:selectOneMenu id="appointmentStatus" value="#{AppointmentMB.appointment.appointmentStatus}">
-                                        <f:selectItems value="#{UtilityMB.appointmentStatuses}" />
+                                        <f:selectItem itemLabel="Open" itemValue="Open" />
+                                        <f:selectItem itemLabel="Cancel" itemValue="Cancel" />
                                     </h:selectOneMenu>
                                 </td>
                             </tr>

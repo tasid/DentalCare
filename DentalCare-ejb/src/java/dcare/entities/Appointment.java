@@ -18,15 +18,17 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
+@XmlRootElement
 public class Appointment implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Temporal(TemporalType.DATE)
-    private Date appointmentDate;
+//    @Temporal(TemporalType.DATE)
+    private String appointmentDate;
     private String appointmentTime;
     private String referredBy;
     private String problemDescription;
@@ -53,10 +55,13 @@ public class Appointment implements Serializable {
     @Transient
     private int doctorId;
     
+    @Transient
+    private int patientId;
+    
     public Appointment() {
     }
 
-    public Appointment(Date appointmentDate, String appointmentTime, String referredBy, String problemDescription, Date createdAt, Date modifiedAt, String appointmentStatus) {
+    public Appointment(String appointmentDate, String appointmentTime, String referredBy, String problemDescription, Date createdAt, Date modifiedAt, String appointmentStatus) {
         this.appointmentDate = appointmentDate;
         this.appointmentTime = appointmentTime;
         this.referredBy = referredBy;
@@ -74,11 +79,11 @@ public class Appointment implements Serializable {
         this.id = id;
     }
 
-    public Date getAppointmentDate() {
+    public String getAppointmentDate() {
         return appointmentDate;
     }
 
-    public void setAppointmentDate(Date appointmentDate) {
+    public void setAppointmentDate(String appointmentDate) {
         this.appointmentDate = appointmentDate;
     }
 
@@ -136,6 +141,14 @@ public class Appointment implements Serializable {
 
     public void setDoctorId(int doctorId) {
         this.doctorId = doctorId;
+    }
+
+    public int getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(int patientId) {
+        this.patientId = patientId;
     }
     
     public Doctor getDoctor() {

@@ -80,6 +80,11 @@ public class PatientMB {
         this.patientList = patientList;
     }
 
+    public Patient getPatient(int id) {
+        Patient patient = patientEJB.find(id);
+        return patient;
+    }
+    
     public Patient getPatient() {
         return patient;
     }

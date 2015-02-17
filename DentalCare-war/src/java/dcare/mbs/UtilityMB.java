@@ -4,7 +4,10 @@
 package dcare.mbs;
 
 import dcare.entities.UtilityClass.*;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import javax.faces.application.FacesMessage;
@@ -57,6 +60,12 @@ public class UtilityMB {
     public void setSessionValue(String key, Object value) {
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put(key, value);
     }
+    
+    public String convertTime(Date time){ 
+        Date date = new Date(); 
+        Format format = new SimpleDateFormat("hh:mm tt"); 
+        return format.format(date);
+    } 
     
     public List<String> fromEnum(String cname) {
         List<String> names = new ArrayList<>();

@@ -26,7 +26,7 @@
                     <h:form>
                         <h:inputHidden value="#{DoctorMB.doctor.id}" />
                         <h:commandButton action="index" value="Back"/>
-                        <h:commandButton action="#{AppointmentMB.makeAppointment(DoctorMB.doctor.id)}" 
+                        <h:commandButton action="#{AppointmentMB.makeAppointmentOnline(DoctorMB.doctor.id)}" 
                                          value="Make Appointment"
                                          style="visibility: #{(DoctorMB.doctor.workStatus == 'Active') ? 'visible' : 'hidden'};"/>
                     </h:form>

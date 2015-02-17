@@ -19,9 +19,12 @@ import javax.persistence.FetchType;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @DiscriminatorValue("D")
+@XmlRootElement
 public class Doctor extends Person implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -120,6 +123,7 @@ public class Doctor extends Person implements Serializable {
         this.imageUrlProfileDetail = imageUrlProfileDetail;
     }
 
+    @XmlTransient
     public List<Prescription> getPrescriptions() {
         return prescriptions;
     }
