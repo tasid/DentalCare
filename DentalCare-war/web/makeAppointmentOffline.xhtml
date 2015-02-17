@@ -16,6 +16,7 @@
             <div class="panel">
                 <h:form>
                     <h:inputHidden value="#{AppointmentMB.appointment.id}" />
+                    <p class="error-message" style="margin: 10px;">#{flash.invalidAppointmentTime}</p>
                     <div class="control-table">
                         <table class="entry-form">
                             <tr>
@@ -46,7 +47,7 @@
                                                  value="#{AppointmentMB.appointment.appointmentDate}"  
                                                  validatorMessage="Please Appointment Date">
                                         <f:validateRequired for="appointmentDate" />
-                                        <f:convertDateTime pattern="MM-dd-yyyy"/>
+                                        <f:convertDateTime pattern="yyyy-MM-dd"/>
                                     </h:inputText>&nbsp;                                     
                                     <h:message for="appointmentDate" errorClass="error-message" />
                                 </td>
@@ -127,7 +128,7 @@
                         </table>
                     </div>
                     <div class="button-button-panel">
-                        <h:commandButton action="#{AppointmentMB.save()}" value="Submit"/>
+                        <h:commandButton action="#{AppointmentMB.save(false)}" value="Submit"/>
                         <h:commandButton action="appointmentList" value="Cancel" immediate="true"/>
                     </div>
                 </h:form>

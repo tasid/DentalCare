@@ -17,6 +17,7 @@
                 <h:form>
                     <div class="control-table">
                         <h:inputHidden value="#{AppointmentMB.appointment.id}" />
+                        <p class="error-message" style="margin: 10px;">#{flash.invalidAppointmentTime}</p>
                         <table class="entry-form">
                             <tr>
                                 <th><h:outputLabel for="doctorId" value="Select Doctor" /></th>
@@ -24,7 +25,7 @@
                                 <td>
                                     <h:selectOneMenu id="doctorId" value="#{AppointmentMB.appointment.doctorId}">
                                         <f:selectItems value="#{DoctorMB.activeDoctorList}" var="doctor" 
-                                                       itemLabel="#{doctor.firstName} #{doctor.lastName}" itemValue="#{doctor.id}" />                                        
+                                                       itemLabel="#{doctor.firstName} #{doctor.lastName}" itemValue="#{doctor.id}" />
                                     </h:selectOneMenu>
                                 </td>
                             </tr>
@@ -44,7 +45,7 @@
                                 <td>
                                     <h:inputText id="appointmentDate" class="datepicker-from-current-date" 
                                                  value="#{AppointmentMB.appointment.appointmentDate}">
-                                        <f:convertDateTime pattern="MM-dd-yyyy"/>
+                                        <f:convertDateTime pattern="yyyy-MM-dd"/>
                                     </h:inputText>
                                 </td>
                             </tr>
@@ -84,7 +85,6 @@
                                 <td colspan="2">&nbsp;</td>
                                 <td>
                                     <h4><u>Only the Green colored are available</u></h4>
-                                    <h3>Reserved Appointments: #{AppointmentMB.reservedAppointmentList.size()}</h3>
                                     <table class="table table-bordered schedule-table">
                                         <tr>
                                             <td class="available-times">08:00 AM</td>
@@ -126,7 +126,7 @@
                         </table>
                     </div>
                     <div class="button-button-panel">
-                        <h:commandButton action="#{AppointmentMB.save()}" value="Submit"/>
+                        <h:commandButton action="#{AppointmentMB.save(true)}" value="Submit"/>
                         <h:commandButton action="index" value="Cancel" immediate="true"/>
                     </div>
                 </h:form>

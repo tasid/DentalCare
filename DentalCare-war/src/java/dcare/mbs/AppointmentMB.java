@@ -6,7 +6,6 @@ package dcare.mbs;
 import dcare.ejbs.*;
 import dcare.entities.*;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -17,6 +16,8 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 
 @ManagedBean(name = "AppointmentMB")
 @RequestScoped
@@ -46,8 +47,12 @@ public class AppointmentMB {
         appointmentList = new ArrayList();
     }
     
-    public String save() {
+    public String save(boolean onlineAppointment) {
         try {
+//            
+//            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+//            this.appointment.setAppointmentDate(df.format(Date.parse(this.appointment.getAppointmentDate())));
+            
             Doctor selectedDoctor = doctorMB.getDoctor(appointment.getDoctorId());
             appointment.setDoctor(selectedDoctor);
             
@@ -56,9 +61,18 @@ public class AppointmentMB {
             
             if(appointment.getId() == 0)
                 appointment.setAppointmentStatus(UtilityClass.AppointmentStatusEnum.Open.toString());
+
+            List<String> reservedApps = getReservedAppointmentList();
+            if(reservedApps.contains(this.appointment.getAppointmentTime())) {
+                Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+                flash.put("invalidAppointmentTime", "Please select another date and time. Sorry, the selected Appointment Time may be reserved by another person!");
+                if(onlineAppointment)
+                    return makeAppointmentOnline(appointment.getDoctorId());
+                else 
+                    return makeAppointmentOffline(appointment.getId());
+            }
             
             appointmentEJB.save(appointment);
-            
             return "appointmentConfirmation";
         }
         catch(Exception ex) {            
@@ -136,19 +150,18 @@ public class AppointmentMB {
 
     public List<String> getReservedAppointmentList() {
         try {
-
             DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             Calendar calobj = Calendar.getInstance();
             String date = df.format(calobj.getTime());
 
             int doctorId = (this.appointment.getDoctorId() != 0) ? this.appointment.getDoctorId() : doctorMB.getActiveDoctorList().get(0).getId();
-            String appointmentDate = (this.appointment.getAppointmentDate() != null) ? this.appointment.getAppointmentDate() : date;
+            if(this.appointment.getAppointmentDate() != null)
+                date =  this.appointment.getAppointmentDate();
 
-//            this.reservedAppointmentList = appointmentEJB.findAppointmentsByDoctorAndDate(doctorId, appointmentDate);
-            List<Appointment> appList = appointmentEJB.findAppointmentsByDoctorAndDate(doctorId, appointmentDate);
+            reservedAppointmentList = appointmentEJB.findAppointmentsByDoctorAndDate(doctorId, date);
         }
         catch(Exception ex) {
-            String err = ex.toString();
+            System.out.println("Error at getReservedAppointmentList() in AppointmentMB: " + ex.getMessage());
         }
         return reservedAppointmentList;
     }
