@@ -10,7 +10,9 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 @ManagedBean(name = "AppointmentMB")
 @RequestScoped
@@ -18,6 +20,12 @@ public class AppointmentMB {
 
     @EJB
     private AppointmentEJB appointmentEJB;
+    
+    @ManagedProperty(value = "#{DoctorMB}")
+    private DoctorMB doctorMB;
+    
+    @ManagedProperty(value = "#{UtilityMB}")
+    private UtilityMB utilityMB;
 
     private Appointment appointment;
     private List<Appointment> appointmentList;
@@ -32,7 +40,14 @@ public class AppointmentMB {
     
     public String save() {
         try {
+            Doctor selectedDoctor = doctorMB.getDoctor(appointment.getDoctorId());
+            appointment.setDoctor(selectedDoctor);
+            
+            if(appointment.getId() == 0)
+                appointment.setAppointmentStatus(UtilityClass.AppointmentStatusEnum.Open.toString());
+            
             appointmentEJB.save(appointment);
+            
             return "appointmentConfirmation";
         }
         catch(Exception ex) {            
@@ -64,6 +79,9 @@ public class AppointmentMB {
     public String makeAppointment(int id){
         try {
 //            this.appointment = appointmentEJB.find(id);
+//            if(utilityMB.getSessionValue("selectedDoctorId") != null)
+            appointment.setDoctorId(id);
+//            utilityMB.setSessionValue("selectedDoctorId", id);
             return "makeAppointment";
         }
         catch(Exception ex) {
@@ -97,4 +115,20 @@ public class AppointmentMB {
     public void setAppointment(Appointment appointment) {
         this.appointment = appointment;
     }
+
+    public DoctorMB getDoctorMB() {
+        return doctorMB;
+    }
+
+    public void setDoctorMB(DoctorMB doctorMB) {
+        this.doctorMB = doctorMB;
+    }   
+
+    public UtilityMB getUtilityMB() {
+        return utilityMB;
+    }
+
+    public void setUtilityMB(UtilityMB utilityMB) {
+        this.utilityMB = utilityMB;
+    }    
 }

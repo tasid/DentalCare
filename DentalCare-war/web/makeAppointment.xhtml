@@ -21,8 +21,9 @@
                                 <th><h:outputLabel for="doctorId" value="Select Doctor" /></th>
                                 <td><h:outputLabel value=":"/></td>
                                 <td>
-                                    <h:selectOneMenu id="doctorId" value="test">
-                                        <f:selectItems value="#{DoctorMB.doctorList}" var="doctor" itemLabel="#{doctor.firstName} #{doctor.lastName}" itemValue="#{doctor.id}" />                                        
+                                    <h:selectOneMenu id="doctorId" value="#{AppointmentMB.appointment.doctorId}">
+                                        <f:selectItems value="#{DoctorMB.doctorList}" var="doctor" 
+                                                       itemLabel="#{doctor.firstName} #{doctor.lastName}" itemValue="#{doctor.id}" />                                        
                                     </h:selectOneMenu>
                                 </td>
                             </tr>
@@ -30,7 +31,8 @@
                                 <th><h:outputLabel for="appointmentDate" value="Appointment Date*"/></th>
                                 <td><h:outputLabel value=":"/></td>
                                 <td>
-                                    <h:inputText id="appointmentDate" class="datepicker-from-current-date" value="#{AppointmentMB.appointment.appointmentDate}">
+                                    <h:inputText id="appointmentDate" class="datepicker-from-current-date" 
+                                                 value="#{AppointmentMB.appointment.appointmentDate}">
                                         <f:convertDateTime pattern="MM-dd-yyyy"/>
                                     </h:inputText>
                                 </td>
@@ -97,6 +99,15 @@
                                             <td>&nbsp;</td>
                                         </tr>
                                     </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><h:outputLabel for="appointmentStatus" value="Status" /></th>
+                                <td><h:outputLabel value=":"/></td>
+                                <td>
+                                    <h:selectOneMenu id="appointmentStatus" value="#{AppointmentMB.appointment.appointmentStatus}">
+                                        <f:selectItems value="#{UtilityMB.appointmentStatuses}" />
+                                    </h:selectOneMenu>
                                 </td>
                             </tr>
                         </table>

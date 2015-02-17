@@ -90,6 +90,11 @@ public class DoctorMB {
         this.doctorList = doctorList;
     }
 
+    public Doctor getDoctor(int id) {
+        Doctor doctor = doctorEJB.find(id);
+        return doctor;
+    }
+    
     public Doctor getDoctor() {
         return doctor;
     }

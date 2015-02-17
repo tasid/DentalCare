@@ -6,6 +6,7 @@ package dcare.mbs;
 import dcare.entities.UtilityClass.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
@@ -35,6 +36,26 @@ public class UtilityMB {
 
     public UserRoleEnum[] getUserRoles() {
         return UserRoleEnum.values();
+    }
+    
+    public Map<String, Object> getSessionMap() {
+        return FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+    }
+    
+    public void clearSessionMap() {
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().clear();
+    }
+    
+    public Object deleteSession(String key) {
+        return FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove(key);
+    }
+    
+    public Object getSessionValue(String key) {
+        return FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get(key);
+    }
+
+    public void setSessionValue(String key, Object value) {
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put(key, value);
     }
     
     public List<String> fromEnum(String cname) {

@@ -17,6 +17,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @Entity
 public class Appointment implements Serializable {
@@ -26,15 +27,14 @@ public class Appointment implements Serializable {
     private int id;
     @Temporal(TemporalType.DATE)
     private Date appointmentDate;
-    @Temporal(TemporalType.TIME)
-    private Date appointmentTime;
+    private String appointmentTime;
     private String referredBy;
     private String problemDescription;
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedAt;
-    private AppointmentStatusEnum appointmentStatus;
+    private String appointmentStatus;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinTable(name = "jnd_appointment_patient",
@@ -50,10 +50,13 @@ public class Appointment implements Serializable {
     )
     private Doctor doctor;
     
+    @Transient
+    private int doctorId;
+    
     public Appointment() {
     }
 
-    public Appointment(Date appointmentDate, Date appointmentTime, String referredBy, String problemDescription, Date createdAt, Date modifiedAt, AppointmentStatusEnum appointmentStatus) {
+    public Appointment(Date appointmentDate, String appointmentTime, String referredBy, String problemDescription, Date createdAt, Date modifiedAt, String appointmentStatus) {
         this.appointmentDate = appointmentDate;
         this.appointmentTime = appointmentTime;
         this.referredBy = referredBy;
@@ -79,11 +82,11 @@ public class Appointment implements Serializable {
         this.appointmentDate = appointmentDate;
     }
 
-    public Date getAppointmentTime() {
+    public String getAppointmentTime() {
         return appointmentTime;
     }
 
-    public void setAppointmentTime(Date appointmentTime) {
+    public void setAppointmentTime(String appointmentTime) {
         this.appointmentTime = appointmentTime;
     }
 
@@ -119,14 +122,22 @@ public class Appointment implements Serializable {
         this.modifiedAt = modifiedAt;
     }
 
-    public AppointmentStatusEnum getAppointmentStatus() {
+    public String getAppointmentStatus() {
         return appointmentStatus;
     }
 
-    public void setAppointmentStatus(AppointmentStatusEnum appointmentStatus) {
+    public void setAppointmentStatus(String appointmentStatus) {
         this.appointmentStatus = appointmentStatus;
     }
 
+    public int getDoctorId() {
+        return doctorId;
+    }
+
+    public void setDoctorId(int doctorId) {
+        this.doctorId = doctorId;
+    }
+    
     public Doctor getDoctor() {
         return doctor;
     }
