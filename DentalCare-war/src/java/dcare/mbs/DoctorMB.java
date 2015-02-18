@@ -35,7 +35,7 @@ public class DoctorMB {
     public String save() {
         try {
             doctorEJB.save(doctor);
-            return "doctorList";
+            return "/doctor/doctorList";
         }
         catch(Exception ex) {            
             return "errorPage";
@@ -45,7 +45,7 @@ public class DoctorMB {
     public String editDoctor(int id){
         try {
             this.doctor = doctorEJB.find(id);
-            return "doctor";
+            return "/doctor/doctor";
         }
         catch(Exception ex) {
             return "errorPage";
@@ -56,7 +56,7 @@ public class DoctorMB {
         try {
             this.doctor = doctorEJB.find(id);
             doctorEJB.delete(this.doctor);
-            return "doctorList";
+            return "/doctor/doctorList";
         } 
         catch(Exception ex) {
             return "errorPage";
@@ -66,7 +66,7 @@ public class DoctorMB {
     public String viewDoctor(int id){
         try {
             this.doctor = doctorEJB.find(id);
-            return "viewDoctor";
+            return "/doctor/viewDoctor";
         }
         catch(Exception ex) {
             return "errorPage";
@@ -76,7 +76,7 @@ public class DoctorMB {
     public String viewProfileDetail(int id){
         try {
             this.doctor = doctorEJB.find(id);
-            return "viewDoctorProfile";
+            return "/doctor/viewDoctorProfile";
         }
         catch(Exception ex) {
             return "errorPage";

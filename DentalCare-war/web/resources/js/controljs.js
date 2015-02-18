@@ -2,7 +2,7 @@ $(function() {
     $(".datepicker")
         .attr("readonly", "readonly")
         .datepicker({
-            dateFormat : 'yy-mm-dd',
+            dateFormat : 'mm-dd-yy',
             changeMonth : true,
             changeYear : true,
             yearRange: "-130:+0"
@@ -11,7 +11,7 @@ $(function() {
     $(".datepicker-upto-current-date")
         .attr("readonly", "readonly")
         .datepicker({
-            dateFormat : 'yy-mm-dd',
+            dateFormat : 'mm-dd-yy',
             changeMonth : true,
             changeYear : true,
             yearRange: "-130:+0",
@@ -21,7 +21,7 @@ $(function() {
     $(".datepicker-from-current-date")
         .attr("readonly", "readonly")
         .datepicker({
-            dateFormat : 'yy-mm-dd',
+            dateFormat : 'mm-dd-yy',
             changeMonth : true,
             changeYear : true,
             yearRange: "-130:+0",

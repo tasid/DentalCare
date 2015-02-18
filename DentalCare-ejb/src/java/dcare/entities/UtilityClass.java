@@ -35,4 +35,9 @@ public class UtilityClass {
         Cancel,
         Done
     }
+    
+    public enum PrescriptionStatusEnum {
+        Open,
+        Done
+    }
 }

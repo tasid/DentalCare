@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Dental C@re</title>
+</h:head>
+<h:body>
+    <ui:composition template="/layout/mainLayout.xhtml">
+        <ui:define name="content">            
+            <h3 class="form-header"><u>#{PrescriptionMB.prescription.id != 0 ? "Update" : "Create"} Prescription</u></h3>            
+            <div class="panel">
+                <h:form>
+                    <div class="control-table" style="width: 100%;">
+                        <h:inputHidden value="#{PrescriptionMB.prescription.id}" />
+                        <table class="entry-form">
+                            <tr>
+                                <td colspan="3">
+                                    <h:outputLabel class="mandatory-text" value="Mandatory fields are marked with star(*)" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><h:outputLabel for="doctorId" value="Select Doctor*" /></th>
+                                <td><h:outputLabel value=":"/></td>
+                                <td>
+                                    <h:selectOneMenu id="doctorId" value="#{PrescriptionMB.prescription.doctorId}">
+                                        <f:selectItems value="#{DoctorMB.activeDoctorList}" var="doctor" 
+                                                       itemLabel="#{doctor.firstName} #{doctor.lastName}" itemValue="#{doctor.id}" />                                        
+                                    </h:selectOneMenu>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><h:outputLabel for="patientId" value="Select Patient*" /></th>
+                                <td><h:outputLabel value=":"/></td>
+                                <td>
+                                    <h:selectOneMenu id="patientId" value="#{PrescriptionMB.prescription.patientId}">
+                                        <f:selectItems value="#{PatientMB.patientList}" var="patient" 
+                                                       itemLabel="#{patient.firstName} #{patient.lastName}" itemValue="#{patient.id}" />                                        
+                                    </h:selectOneMenu>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><h:outputLabel for="referedBy" value="Refered By"/></th>
+                                <td><h:outputLabel value=":"/></td>
+                                <td><h:inputText id="referedBy" value="#{PrescriptionMB.prescription.referedBy}" /></td> 
+                            </tr>
+                            <tr>
+                                <th><h:outputLabel for="history" value="History"/></th>
+                                <td><h:outputLabel value=":"/></td>
+                                <td>
+                                    <h:inputTextarea id="history" cols="50" rows="5" value="#{PrescriptionMB.prescription.history}" />
+                                </td> 
+                            </tr>
+                            <tr>
+                                <th><h:outputLabel for="symptoms" value="Symptoms*"/></th>
+                                <td><h:outputLabel value=":"/></td>
+                                <td>
+                                    <h:inputTextarea id="symptoms" cols="50" rows="5" value="#{PrescriptionMB.prescription.symptoms}" validatorMessage="Please describe the Symptom">
+                                        <f:validateRequired for="symptoms" />
+                                    </h:inputTextarea>&nbsp;                                     
+                                    <h:message for="symptoms" errorClass="error-message text-align-top" />
+                                </td> 
+                            </tr>
+                            <tr>
+                                <th><h:outputLabel for="tests" value="Tests"/></th>
+                                <td><h:outputLabel value=":"/></td>
+                                <td>
+                                    <h:inputTextarea id="tests" cols="50" rows="3" value="#{PrescriptionMB.prescription.tests}" />
+                                </td> 
+                            </tr>
+                            <tr>
+                                <th><h:outputLabel for="medication" value="Medication*"/></th>
+                                <td><h:outputLabel value=":"/></td>
+                                <td>
+                                    <h:inputTextarea id="medication" cols="50" rows="7" value="#{PrescriptionMB.prescription.medication}"  validatorMessage="Prescription without Medication is meaningless">
+                                        <f:validateRequired for="medication" />
+                                    </h:inputTextarea>&nbsp;                                     
+                                    <h:message for="medication" errorClass="error-message text-align-top" />
+                                </td> 
+                            </tr>
+                            <tr>
+                                <th><h:outputLabel for="advice" value="Advice"/></th>
+                                <td><h:outputLabel value=":"/></td>
+                                <td>
+                                    <h:inputTextarea id="advice" cols="50" rows="3" value="#{PrescriptionMB.prescription.advice}" />
+                                </td> 
+                            </tr>
+                            <tr>
+                                <th><h:outputLabel for="currentStatus" value="Status" /></th>
+                                <td><h:outputLabel value=":"/></td>
+                                <td>
+                                    <h:selectOneMenu id="currentStatus" value="#{PrescriptionMB.prescription.currentStatus}">
+                                        <f:selectItems value="#{UtilityMB.prescriptionStatuses}" />
+                                    </h:selectOneMenu>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="button-button-panel">
+                        <h:commandButton action="#{PrescriptionMB.save()}" value="Save"/>
+                        <h:commandButton action="#{PrescriptionMB.generatePrescriptionPdf(PrescriptionMB.prescription.id)}" 
+                                         value="Generate PDF" 
+                                         style="display: #{(PrescriptionMB.prescription.id > 0) ? 'inline' : 'none'};"/>
+                        <h:commandButton action="#{PrescriptionMB.sendPrescriptionViaEmail(PrescriptionMB.prescription.id)}" 
+                                         value="Send Via Email"
+                                         style="display: #{(PrescriptionMB.prescription.id > 0) ? 'inline' : 'none'};"/>
+                        <h:commandButton action="prescriptionList" value="Cancel" immediate="true"/>
+                    </div>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>    
+</h:body>
+</html>
+

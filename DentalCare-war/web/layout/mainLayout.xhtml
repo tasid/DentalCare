@@ -29,8 +29,8 @@
                         <h:panelGrid columns="2" cellpadding="10">  
                             <h:form>
                                 <ul>
-                                    <li><h:commandLink action="doctor" value="Add Doctor" class="left-menu-link" /></li>
-                                    <li><h:commandLink action="doctorList" value="Doctor List" class="left-menu-link" /></li>
+                                    <li><h:commandLink action="/doctor/doctor" value="Add Doctor" class="left-menu-link" /></li>
+                                    <li><h:commandLink action="/doctor/doctorList" value="Doctor List" class="left-menu-link" /></li>
                                 </ul>
                             </h:form>
                         </h:panelGrid>  
@@ -39,8 +39,8 @@
                         <h:panelGrid columns="2" cellpadding="10">  
                             <h:form>
                                 <ul>
-                                    <li><h:commandLink action="employee" value="Add Employee" class="left-menu-link" /></li>
-                                    <li><h:commandLink action="employeeList" value="Employee List" class="left-menu-link" /></li>
+                                    <li><h:commandLink action="/employee/employee" value="Add Employee" class="left-menu-link" /></li>
+                                    <li><h:commandLink action="/employee/employeeList" value="Employee List" class="left-menu-link" /></li>
                                 </ul>
                             </h:form>
                         </h:panelGrid>  
@@ -49,8 +49,8 @@
                         <h:panelGrid columns="2" cellpadding="10">  
                             <h:form>
                                 <ul>
-                                    <li><h:commandLink action="patient" value="Add Patient" class="left-menu-link" /></li>
-                                    <li><h:commandLink action="patientList" value="Patient List" class="left-menu-link" /></li>
+                                    <li><h:commandLink action="/patient/patient" value="Add Patient" class="left-menu-link" /></li>
+                                    <li><h:commandLink action="/patient/patientList" value="Patient List" class="left-menu-link" /></li>
                                 </ul>
                             </h:form>
                         </h:panelGrid>  
@@ -59,8 +59,18 @@
                         <h:panelGrid columns="2" cellpadding="10">  
                             <h:form>
                                 <ul>
-                                    <li><h:commandLink action="makeAppointmentOffline" value="Make Appointment" class="left-menu-link" /></li>
-                                    <li><h:commandLink action="appointmentList" value="Appointment List" class="left-menu-link" /></li>
+                                    <li><h:commandLink action="/appointment/makeAppointmentOffline" value="Make Appointment" class="left-menu-link" /></li>
+                                    <li><h:commandLink action="/appointment/appointmentList" value="Appointment List" class="left-menu-link" /></li>
+                                </ul>
+                            </h:form>
+                        </h:panelGrid>  
+                    </p:tab>
+                    <p:tab title="Prescription">  
+                        <h:panelGrid columns="2" cellpadding="10">  
+                            <h:form>
+                                <ul>
+                                    <li><h:commandLink action="/prescription/prescription" value="Create Prescription" class="left-menu-link" /></li>
+                                    <li><h:commandLink action="/prescription/prescriptionList" value="Prescription List" class="left-menu-link" /></li>
                                 </ul>
                             </h:form>
                         </h:panelGrid>  
@@ -69,10 +79,10 @@
                         <h:panelGrid columns="2" cellpadding="10">  
                             <h:form>
                                 <ul>
-                                    <li><h:commandLink action="availableDoctorsRpt" value="Available Doctors" class="left-menu-link" /></li>
-                                    <li><h:commandLink action="appontmentHistoryByDoctorRpt" value="Appointment History (By Doctor)" class="left-menu-link" /></li>
-                                    <li><h:commandLink action="appontmentHistoryByPatientRpt" value="Appointment History (By Patient)" class="left-menu-link" /></li>
-                                    <li><h:commandLink action="todaysAppointmentRpt" value="Schedule for Today" class="left-menu-link" /></li>
+                                    <li><h:commandLink action="/reports/availableDoctorsRpt" value="Available Doctors" class="left-menu-link" /></li>
+                                    <li><h:commandLink action="/reports/appontmentHistoryByDoctorRpt" value="Appointment History (By Doctor)" class="left-menu-link" /></li>
+                                    <li><h:commandLink action="/reports/appontmentHistoryByPatientRpt" value="Appointment History (By Patient)" class="left-menu-link" /></li>
+                                    <li><h:commandLink action="/reports/todaysAppointmentRpt" value="Schedule for Today" class="left-menu-link" /></li>
                                 </ul>
                             </h:form>
                         </h:panelGrid>  

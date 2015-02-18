@@ -33,7 +33,7 @@ public class EmployeeMB {
     public String save() {
         try {
             employeeEJB.save(this.employee);
-            return "employeeList";
+            return "/employee/employeeList";
         }
         catch(Exception ex) {            
             return "errorPage";
@@ -43,7 +43,7 @@ public class EmployeeMB {
     public String editEmployee(int id){
         try {
             this.employee = employeeEJB.find(id);
-            return "employee";
+            return "/employee/employee";
         }
         catch(Exception ex) {
             return "errorPage";
@@ -54,7 +54,7 @@ public class EmployeeMB {
         try {
             this.employee = employeeEJB.find(id);
             employeeEJB.delete(this.employee);
-            return "employeeList";
+            return "/employee/employeeList";
         } 
         catch(Exception ex) {
             return "errorPage";
@@ -64,7 +64,7 @@ public class EmployeeMB {
     public String viewEmployee(int id){
         try {
             this.employee = employeeEJB.find(id);
-            return "viewEmployee";
+            return "/employee/viewEmployee";
         }
         catch(Exception ex) {
             return "errorPage";

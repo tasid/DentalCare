@@ -1,3 +1,7 @@
+.text-align-center {
+    text-align: center;
+}
+
 .text-align-top {
     vertical-align: top;
 }
@@ -72,6 +76,11 @@ table.view-form > tbody > tr:first-child > td {
     min-width: 180px;
     margin: 15px;
     padding: 3px;
+}
+
+.profile-picture > img {
+    margin: auto;
+    width: 100%;
 }
 
 .picture-box {

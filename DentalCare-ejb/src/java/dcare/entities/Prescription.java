@@ -6,6 +6,7 @@ package dcare.entities;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -13,9 +14,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @Entity
 public class Prescription implements Serializable {
@@ -23,8 +26,23 @@ public class Prescription implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Lob 
+    @Column(length=1000)
+    private String history;
+    @Lob 
+    @Column(length=1000)
     private String symptoms;
+    @Lob 
+    @Column(length=1000)
+    private String tests;
+    @Lob 
+    @Column(length=1000)
     private String medication;
+    @Lob 
+    @Column(length=1000)
+    private String advice;
+    private String referedBy;
+    private String currentStatus;
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
     @Temporal(TemporalType.TIMESTAMP)
@@ -44,9 +62,25 @@ public class Prescription implements Serializable {
     )
     private Patient patient;
     
+    @Transient
+    private int doctorId;
+    
+    @Transient
+    private int patientId;
+    
     public Prescription() {
     }
 
+    public Prescription(String history, String symptoms, String tests, String medication, String advice, String referedBy, String currentStatus) {
+        this.history = history;
+        this.symptoms = symptoms;
+        this.tests = tests;
+        this.medication = medication;
+        this.advice = advice;
+        this.referedBy = referedBy;
+        this.currentStatus = currentStatus;
+    }
+    
     public int getId() {
         return id;
     }
@@ -71,6 +105,38 @@ public class Prescription implements Serializable {
         this.medication = medication;
     }
 
+    public String getHistory() {
+        return history;
+    }
+
+    public void setHistory(String history) {
+        this.history = history;
+    }
+
+    public String getTests() {
+        return tests;
+    }
+
+    public void setTests(String tests) {
+        this.tests = tests;
+    }
+
+    public String getAdvice() {
+        return advice;
+    }
+
+    public void setAdvice(String advice) {
+        this.advice = advice;
+    }
+
+    public String getReferedBy() {
+        return referedBy;
+    }
+
+    public void setReferedBy(String referedBy) {
+        this.referedBy = referedBy;
+    }
+
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -85,6 +151,14 @@ public class Prescription implements Serializable {
 
     public void setModifiedAt(Date modifiedAt) {
         this.modifiedAt = modifiedAt;
+    }
+
+    public String getCurrentStatus() {
+        return currentStatus;
+    }
+
+    public void setCurrentStatus(String currentStatus) {
+        this.currentStatus = currentStatus;
     }
     
     public Doctor getDoctor() {
@@ -101,6 +175,22 @@ public class Prescription implements Serializable {
 
     public void setPatient(Patient patient) {
         this.patient = patient;
+    }
+
+    public int getDoctorId() {
+        return doctorId;
+    }
+
+    public void setDoctorId(int doctorId) {
+        this.doctorId = doctorId;
+    }
+
+    public int getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(int patientId) {
+        this.patientId = patientId;
     }
     
     @Override

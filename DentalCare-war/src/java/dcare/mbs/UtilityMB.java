@@ -40,6 +40,10 @@ public class UtilityMB {
     public UserRoleEnum[] getUserRoles() {
         return UserRoleEnum.values();
     }
+
+    public PrescriptionStatusEnum[] getPrescriptionStatuses() {
+        return PrescriptionStatusEnum.values();
+    }
     
     public Map<String, Object> getSessionMap() {
         return FacesContext.getCurrentInstance().getExternalContext().getSessionMap();

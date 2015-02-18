@@ -15,7 +15,7 @@
             <div class="panel list-table">
                 <h:form>
                     <p:dataTable var="doctor" value="#{DoctorMB.doctorList}" sortMode="single"
-                                 paginator="true" rows="5" paginatorPosition="bottom">
+                                 paginator="true" rows="10" paginatorPosition="bottom">
                         
                         <p:column sortBy="#{doctor.firstName}">  
                             <f:facet name="header">  
@@ -35,19 +35,19 @@
                             </f:facet>
                             <h:outputText value="#{doctor.email}"></h:outputText>
                         </p:column>
-                        <p:column sortBy="#{doctor.phoneNumber}">  
+                        <p:column sortBy="#{doctor.phoneNumber}" class="text-align-center" width="12%">  
                             <f:facet name="header">
                                 <h:outputText value="Phone"></h:outputText>
                             </f:facet>
                             <h:outputText value="#{doctor.phoneNumber}"></h:outputText>
                         </p:column>
-                        <p:column sortBy="#{doctor.workStatus}">  
+                        <p:column sortBy="#{doctor.workStatus}" width="10%" class="text-align-center">  
                             <f:facet name="header">
                                 <h:outputText value="Status"></h:outputText>
                             </f:facet>
                             <h:outputText value="#{doctor.workStatus}"></h:outputText>
                         </p:column>
-                        <p:column width="12%">
+                        <p:column width="12%" class="text-align-center">
                             <f:facet name="header">
                                 <h:outputText value="Action"></h:outputText>
                             </f:facet>                        
