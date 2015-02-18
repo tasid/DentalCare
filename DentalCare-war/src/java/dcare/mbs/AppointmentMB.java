@@ -47,7 +47,7 @@ public class AppointmentMB {
         appointmentList = new ArrayList();
     }
     
-    public String save(boolean onlineAppointment) {
+    public String save() {
         try {
 //            
 //            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -66,10 +66,10 @@ public class AppointmentMB {
             if(reservedApps.contains(this.appointment.getAppointmentTime())) {
                 Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
                 flash.put("invalidAppointmentTime", "Please select another date and time. Sorry, the selected Appointment Time may be reserved by another person!");
-                if(onlineAppointment)
-                    return makeAppointmentOnline(appointment.getDoctorId());
-                else 
-                    return makeAppointmentOffline(appointment.getId());
+//                if(onlineAppointment)
+//                    return makeAppointmentOnline(appointment.getDoctorId());
+//                else 
+//                    return makeAppointmentOffline(appointment.getId());
             }
             
             appointmentEJB.save(appointment);
@@ -101,6 +101,32 @@ public class AppointmentMB {
         }
     }
     
+    public String cancelAppointment(int id){
+        try {
+            int updateCount = appointmentEJB.updateAppointmentStatus(id, UtilityClass.AppointmentStatusEnum.Cancel);
+            if(updateCount > 0)
+                System.out.println("Appointment Updated : " + updateCount);
+            
+            return "index";
+        }
+        catch(Exception ex) {
+            return "errorPage";
+        }
+    }
+    
+    public String appointmentDone(int id){
+        try {
+            int updateCount = appointmentEJB.updateAppointmentStatus(id, UtilityClass.AppointmentStatusEnum.Done);
+            if(updateCount > 0)
+                System.out.println("Appointment Updated : " + updateCount);
+            
+            return "index";
+        }
+        catch(Exception ex) {
+            return "errorPage";
+        }
+    }
+    
     public String makeAppointmentOffline(int id){
         try {
             this.appointment = appointmentEJB.find(id);
@@ -122,6 +148,17 @@ public class AppointmentMB {
             this.appointment.setDoctorId(id);
             this.appointment.setPatientId(12); //this should be the logged in patient id
             
+            return "makeAppointmentOnline";
+        }
+        catch(Exception ex) {
+            return "errorPage";
+        }
+    }
+    
+    public String makeAppointment(int id){
+        try {
+            this.appointment.setDoctorId(id);
+            this.appointment.setPatientId(12); //this should be the logged in patient id
             return "makeAppointmentOnline";
         }
         catch(Exception ex) {

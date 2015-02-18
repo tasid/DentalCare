@@ -13,7 +13,7 @@
         <ui:define name="content">
             <h3 class="form-header"><u>Prescription List</u></h3>            
             <div class="panel list-table">
-                <h:form>
+                <!--<h:form>-->
                     <p:dataTable var="prescription" value="#{PrescriptionMB.prescriptionList}" sortMode="single"
                                  paginator="true" rows="15" paginatorPosition="bottom">
                         
@@ -52,12 +52,14 @@
                         <p:column class="text-align-center" width="10%">
                             <f:facet name="header">
                                 <h:outputText value="Action"></h:outputText>
-                            </f:facet>                        
-                            <h:commandLink action="#{PrescriptionMB.editPrescription(prescription.id)}" value="Edit" /> | 
-                            <h:commandLink action="#{PrescriptionMB.deletePrescription(prescription.id)}" value="Delete" /> 
+                            </f:facet> 
+                            <h:form>
+                                <h:commandLink action="#{PrescriptionMB.editPrescription(prescription.id)}" value="Edit" /> | 
+                                <h:commandLink action="#{PrescriptionMB.deletePrescription(prescription.id)}" value="Delete" /> 
+                            </h:form>
                         </p:column>                        
                     </p:dataTable>                    
-                </h:form>
+                <!--</h:form>-->
             </div>
         </ui:define>
     </ui:composition>

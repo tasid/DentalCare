@@ -52,7 +52,7 @@ public class PrescriptionMB {
                 prescription.setCurrentStatus(UtilityClass.PrescriptionStatusEnum.Open.toString());
             
             prescriptionEJB.save(prescription);
-            return "/prescription/prescriptionList";
+            return "prescriptionList";
         }
         catch(Exception ex) {            
             return "errorPage";
@@ -62,7 +62,10 @@ public class PrescriptionMB {
     public String editPrescription(int id){
         try {
             this.prescription = prescriptionEJB.find(id);
-            return "/prescription/prescription";
+            this.prescription.setDoctorId(this.prescription.getDoctor().getId());
+            this.prescription.setPatientId(this.prescription.getPatient().getId());
+            
+            return "prescription";
         }
         catch(Exception ex) {
             return "errorPage";
@@ -72,7 +75,7 @@ public class PrescriptionMB {
     public String generatePrescriptionPdf(int id){
         try {
             this.prescription = prescriptionEJB.find(id);
-            return "/prescription/prescriptionList";
+            return "prescriptionList";
         }
         catch(Exception ex) {
             return "errorPage";
@@ -81,7 +84,7 @@ public class PrescriptionMB {
     public String sendPrescriptionViaEmail(int id){
         try {
             this.prescription = prescriptionEJB.find(id);
-            return "/prescription/prescriptionList";
+            return "prescriptionList";
         }
         catch(Exception ex) {
             return "errorPage";
@@ -92,7 +95,7 @@ public class PrescriptionMB {
         try {
             this.prescription = prescriptionEJB.find(id);
             prescriptionEJB.delete(this.prescription);
-            return "/prescription/prescriptionList";
+            return "prescriptionList";
         } 
         catch(Exception ex) {
             return "errorPage";
@@ -102,7 +105,7 @@ public class PrescriptionMB {
     public String viewPrescription(int id){
         try {
             this.prescription = prescriptionEJB.find(id);
-            return "/prescription/viewPrescription";
+            return "viewPrescription";
         }
         catch(Exception ex) {
             return "errorPage";
@@ -118,8 +121,8 @@ public class PrescriptionMB {
     }
 
     public List<Prescription> getPrescriptionList() {
-        this.prescriptionList = prescriptionEJB.findAll();
-        return this.prescriptionList;
+        this.prescriptionList = prescriptionEJB.findAllPrescriptions();
+        return prescriptionList;
     }
 
     public void setPrescriptionList(List<Prescription> prescriptionList) {

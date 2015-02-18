@@ -69,6 +69,15 @@ table.view-form > tbody > tr:first-child > td {
     width: 75%;
 }
 
+.search-controls {
+    margin: 15px;
+    padding: 5px;
+}
+
+.search-controls td input, .search-controls td label {
+    margin-right: 10px;
+}
+
 .profile-picture {
     border: 1px solid #D0E9C6;   
     float: right;
@@ -139,6 +148,11 @@ table.view-form > tbody > tr:first-child > td {
 .schedule-table {
     border-collapse: inherit;
     border-width: 3px;
+}
+
+.report-table {
+    border: 1px solid grey;
+    margin: 15px;
 }
 
 .available-times {

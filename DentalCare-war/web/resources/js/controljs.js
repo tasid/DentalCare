@@ -25,7 +25,8 @@ $(function() {
             changeMonth : true,
             changeYear : true,
             yearRange: "-130:+0",
-            minDate: new Date()
+            minDate: new Date(),
+            defaultDate: new Date()
         });
     
     $(".patient-list-online-appointment").attr("readonly", "readonly");

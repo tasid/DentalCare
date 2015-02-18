@@ -41,6 +41,17 @@ public class PrescriptionEJB {
         return (List<Prescription>)em.createQuery(cq).getResultList();
     }
     
+    public List<Prescription> findAllPrescriptions() {
+        CriteriaBuilder builder = em.getCriteriaBuilder();
+        CriteriaQuery<Prescription> criQuery = builder.createQuery(Prescription.class);
+        
+        Root<Prescription> prescription = criQuery.from(Prescription.class);
+        criQuery.select(prescription);
+        
+        TypedQuery<Prescription> query = em.createQuery(criQuery);
+        return query.getResultList();
+    }
+    
     public List<Prescription> findPrescriptionsByDoctor(String lastName) {
         CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<Prescription> criQuery = builder.createQuery(Prescription.class);

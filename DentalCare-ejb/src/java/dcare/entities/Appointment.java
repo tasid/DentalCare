@@ -10,6 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import dcare.entities.UtilityClass.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Objects;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -80,7 +83,12 @@ public class Appointment implements Serializable {
     }
 
     public String getAppointmentDate() {
-        return appointmentDate;
+        
+        DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
+        Calendar calobj = Calendar.getInstance();
+        String date = df.format(calobj.getTime());
+        
+        return (appointmentDate != "") ? appointmentDate : date;
     }
 
     public void setAppointmentDate(String appointmentDate) {

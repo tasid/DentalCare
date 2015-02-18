@@ -33,7 +33,7 @@ public class PatientMB {
     public String save() {
         try {
             patientEJB.save(this.patient);
-            return "/patient/patientList";
+            return "patientList";
         }
         catch(Exception ex) {            
             return "errorPage";
@@ -43,7 +43,7 @@ public class PatientMB {
     public String editPatient(int id){
         try {
             this.patient = patientEJB.find(id);
-            return "/patient/patient";
+            return "patient";
         }
         catch(Exception ex) {
             return "errorPage";
@@ -54,7 +54,7 @@ public class PatientMB {
         try {
             this.patient = patientEJB.find(id);
             patientEJB.delete(this.patient);
-            return "/patient/patientList";
+            return "patientList";
         } 
         catch(Exception ex) {
             return "errorPage";
@@ -64,7 +64,7 @@ public class PatientMB {
     public String viewPatient(int id){
         try {
             this.patient = patientEJB.find(id);
-            return "/patient/viewPatient";
+            return "viewPatient";
         }
         catch(Exception ex) {
             return "errorPage";

@@ -92,6 +92,18 @@ public class AppointmentEJB {
 //        return query.getResultList();
 //    }
     
+    public int updateAppointmentStatus(int appointmentId, UtilityClass.AppointmentStatusEnum status) {
+        StringBuilder stringBuilder = new StringBuilder("update APPOINTMENT ")
+                .append(" set APPOINTMENTSTATUS = '?1' ")
+                .append(" where id = '?2' ");
+        
+        Query query = em.createNativeQuery(stringBuilder.toString(), Appointment.class);
+        query.setParameter("1", appointmentId);
+        query.setParameter("2", status);
+        
+        return query.executeUpdate();
+    }
+    
     public void delete(Appointment appointment) {
         appointment = em.merge(appointment);
         em.remove(appointment);
