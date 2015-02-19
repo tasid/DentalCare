@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dcare.mbs;
+package dcare.ejbs;
 
 import java.util.Properties;
 import javax.ejb.Stateless;
-import javax.faces.bean.ManagedBean;
 import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -20,11 +19,10 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-@ManagedBean(name = "EmailMB")
 @Stateless
-public class EmailMB {
+public class EmailEJB {
 
-    public EmailMB() {
+    public EmailEJB() {
     }
     
     

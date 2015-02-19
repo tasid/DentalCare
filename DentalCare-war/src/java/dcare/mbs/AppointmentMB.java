@@ -29,6 +29,9 @@ public class AppointmentMB {
     @EJB
     private AppointmentEJB appointmentEJB;
     
+    @EJB
+    private EmailEJB emailEJB;
+    
     @ManagedProperty(value = "#{DoctorMB}")
     private DoctorMB doctorMB;
     
@@ -37,9 +40,6 @@ public class AppointmentMB {
     
     @ManagedProperty(value = "#{UtilityMB}")
     private UtilityMB utilityMB;
-    
-    @ManagedProperty(value = "#{EmailMB}")
-    private EmailMB emailMB;
 
     private Appointment appointment;
     private List<Appointment> appointmentList;
@@ -92,7 +92,7 @@ public class AppointmentMB {
             emailBody += "Best Regards <br /> Dental Care <br /> Phone: (641)222-1110 <br /> Email: care@thedentalcare.com";
             emailBody += "/div";
             
-            emailMB.sendEmail(emailTo, emailSubject, emailBody);
+            emailEJB.sendEmail(emailTo, emailSubject, emailBody);
             
             return "appointmentConfirmation";
         }
@@ -219,12 +219,12 @@ public class AppointmentMB {
         this.utilityMB = utilityMB;
     }    
 
-    public EmailMB getEmailMB() {
-        return emailMB;
+    public EmailEJB getEmailEJB() {
+        return emailEJB;
     }
 
-    public void setEmailMB(EmailMB emailMB) {
-        this.emailMB = emailMB;
-    }  
-    
+    public void setEmailEJB(EmailEJB emailEJB) {
+        this.emailEJB = emailEJB;
+    }
+       
 }
