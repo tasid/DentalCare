@@ -57,6 +57,21 @@ public class AppointmentEJB {
         return query.getResultList();
     }
     
+    public List<Appointment> findAppointmentsByDate(Date apptDate) {
+        CriteriaBuilder builder = em.getCriteriaBuilder();
+        CriteriaQuery<Appointment> criQuery = builder.createQuery(Appointment.class);
+        
+        Root<Appointment> appointment = criQuery.from(Appointment.class);
+        Join<Appointment, Doctor> doctor = appointment.join(Appointment_.doctor);
+        criQuery.where(builder.equal(doctor.get(Doctor_.workStatus), UtilityClass.WorkStatusEnum.Active.toString()),
+                       builder.equal(appointment.get(Appointment_.appointmentDate), apptDate),
+                       builder.equal(appointment.get(Appointment_.appointmentStatus), UtilityClass.AppointmentStatusEnum.Open.toString()));
+        criQuery.select(appointment);
+        
+        TypedQuery<Appointment> query = em.createQuery(criQuery);
+        return query.getResultList();
+    }
+    
     public List<String> findAppointmentsByDoctorAndDate(int doctorId, Date appointmentDate) {
         CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<Appointment> criQuery = builder.createQuery(Appointment.class);

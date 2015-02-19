@@ -59,7 +59,8 @@
                                 <td><h:outputLabel value=":"/></td>
                                 <td>
                                     <h:selectOneMenu id="appointmentTime" value="#{AppointmentMB.appointment.appointmentTime}">
-                                        <f:selectItem itemLabel="08:00 AM" itemValue="08:00 AM" />                                        
+                                        <f:selectItems value="#{UtilityMB.appointmentTimes}" />
+                                        <!--                                        <f:selectItem itemLabel="08:00 AM" itemValue="08:00 AM" />                                        
                                         <f:selectItem itemLabel="08:45 AM" itemValue="08:45 AM" />                                        
                                         <f:selectItem itemLabel="09:30 AM" itemValue="09:30 AM" />                                        
                                         <f:selectItem itemLabel="10:15 AM" itemValue="10:15 AM" />                                        
@@ -67,7 +68,7 @@
                                         <f:selectItem itemLabel="01:00 PM" itemValue="01:00 PM" />                                        
                                         <f:selectItem itemLabel="01:45 PM" itemValue="01:45 PM" />                                        
                                         <f:selectItem itemLabel="02:30 PM" itemValue="02:30 PM" />                                        
-                                        <f:selectItem itemLabel="03:15 PM" itemValue="03:15 PM" />                                        
+                                        <f:selectItem itemLabel="03:15 PM" itemValue="03:15 PM" />                                        -->
                                     </h:selectOneMenu>
                                 </td>
                             </tr>
@@ -78,7 +79,7 @@
                                     <h:inputTextarea id="problemDescription" value="#{AppointmentMB.appointment.problemDescription}" cols="35" rows="5" validatorMessage="Please describe your problem">
                                         <f:validateRequired for="problemDescription" />
                                     </h:inputTextarea>&nbsp;                                     
-                                    <h:message for="problemDescription" errorClass="error-message" />
+                                    <h:message for="problemDescription" errorClass="error-message text-align-top" />
                                 </td>
                             </tr>
                         </table>

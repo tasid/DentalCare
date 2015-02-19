@@ -46,20 +46,16 @@ public class UtilityMB {
     }
     
     public List<String> getAppointmentTimes() {
-        ArrayList<String> apptTimes = new ArrayList<String>();
-//        apptTimes.addAll("08:00 AM");
-
-//        <f:selectItem itemLabel="08:00 AM" itemValue="08:00 AM" />                                        
-//        <f:selectItem itemLabel="08:45 AM" itemValue="08:45 AM" />                                        
-//        <f:selectItem itemLabel="09:30 AM" itemValue="09:30 AM" />                                        
-//        <f:selectItem itemLabel="10:15 AM" itemValue="10:15 AM" />                                        
-//        <f:selectItem itemLabel="11:00 AM" itemValue="11:00 AM" />                                        
-//        <f:selectItem itemLabel="01:00 PM" itemValue="01:00 PM" />                                        
-//        <f:selectItem itemLabel="01:45 PM" itemValue="01:45 PM" />                                        
-//        <f:selectItem itemLabel="02:30 PM" itemValue="02:30 PM" />                                        
-//        <f:selectItem itemLabel="03:15 PM" itemValue="03:15 PM" />   
-
-       return apptTimes;
+        ArrayList<String> apptTimes = new ArrayList();
+        apptTimes.add("08:00 AM");
+        apptTimes.add("08:45 AM");
+        apptTimes.add("09:30 AM");
+        apptTimes.add("10:15 AM");
+        apptTimes.add("11:00 AM");
+        apptTimes.add("01:45 PM");
+        apptTimes.add("02:30 PM");
+        apptTimes.add("03:15 PM");
+        return apptTimes;
     }
     
     public Map<String, Object> getSessionMap() {
