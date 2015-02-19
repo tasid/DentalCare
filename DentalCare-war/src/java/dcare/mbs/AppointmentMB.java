@@ -18,6 +18,9 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @ManagedBean(name = "AppointmentMB")
 @RequestScoped
@@ -39,6 +42,10 @@ public class AppointmentMB {
     private List<Appointment> appointmentList;
     private List<String> reservedAppointmentList;
 
+    @Transient
+    @Temporal(TemporalType.DATE)
+    private Date currentDate = new Date();
+    
     public AppointmentMB() { }
     
     @PostConstruct
@@ -49,10 +56,6 @@ public class AppointmentMB {
     
     public String save() {
         try {
-//            
-//            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-//            this.appointment.setAppointmentDate(df.format(Date.parse(this.appointment.getAppointmentDate())));
-            
             Doctor selectedDoctor = doctorMB.getDoctor(appointment.getDoctorId());
             appointment.setDoctor(selectedDoctor);
             
@@ -62,15 +65,12 @@ public class AppointmentMB {
             if(appointment.getId() == 0)
                 appointment.setAppointmentStatus(UtilityClass.AppointmentStatusEnum.Open.toString());
 
-            List<String> reservedApps = getReservedAppointmentList();
-            if(reservedApps.contains(this.appointment.getAppointmentTime())) {
-                Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-                flash.put("invalidAppointmentTime", "Please select another date and time. Sorry, the selected Appointment Time may be reserved by another person!");
-//                if(onlineAppointment)
-//                    return makeAppointmentOnline(appointment.getDoctorId());
-//                else 
-//                    return makeAppointmentOffline(appointment.getId());
-            }
+            //validating duplicate appointment
+//            List<String> reservedAppointments = getReservedAppointmentList(appointment.getDoctorId(), appointment.getAppointmentDate());
+//            if(reservedAppointments.contains(this.appointment.getAppointmentTime())) {
+//                Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+//                flash.put("invalidAppointmentTime", "Please select another date and time. Sorry, the selected Appointment Time may be reserved by another person!");
+//            }
             
             appointmentEJB.save(appointment);
             return "appointmentConfirmation";
@@ -80,19 +80,37 @@ public class AppointmentMB {
         }
     }
     
-    public String editAppointment(int id){
+    public String createAppointment(int doctorId){
         try {
-            this.appointment = appointmentEJB.find(id);
-            return "appointment";
+            this.appointment.setDoctorId(doctorId);
+            this.appointment.setPatientId(12); //logged in patient Id if the role is Patient
+            this.appointment.setAppointmentDate(new Date());
+            this.appointment.setAppointmentStatus(UtilityClass.AppointmentStatusEnum.Open.toString());
+            return "makeAppointment";
         }
         catch(Exception ex) {
             return "errorPage";
         }
     }
     
-    public String deleteAppointment(int id){
+    public String editAppointment(int appointmentId){
         try {
-            this.appointment = appointmentEJB.find(id);
+            this.appointment = appointmentEJB.find(appointmentId);
+            if(this.appointment.getDoctor() != null)
+                appointment.setDoctorId(this.appointment.getDoctor().getId());
+            
+            if(this.appointment.getPatient() != null)
+                appointment.setPatientId(this.appointment.getPatient().getId());
+                 
+            return "makeAppointment";
+        }
+        catch(Exception ex) {
+            return "errorPage";
+        }
+    }
+    public String deleteAppointment(int appointmentId){
+        try {
+            this.appointment = appointmentEJB.find(appointmentId);
             appointmentEJB.delete(this.appointment);
             return "appointmentList";
         } 
@@ -101,12 +119,9 @@ public class AppointmentMB {
         }
     }
     
-    public String cancelAppointment(int id){
+    public String cancelAppointment(int appointmentId){
         try {
-            int updateCount = appointmentEJB.updateAppointmentStatus(id, UtilityClass.AppointmentStatusEnum.Cancel);
-            if(updateCount > 0)
-                System.out.println("Appointment Updated : " + updateCount);
-            
+            appointmentEJB.updateAppointmentStatus(appointmentId, UtilityClass.AppointmentStatusEnum.Cancel);
             return "index";
         }
         catch(Exception ex) {
@@ -114,68 +129,16 @@ public class AppointmentMB {
         }
     }
     
-    public String appointmentDone(int id){
+    public String appointmentDone(int appointmentId){
         try {
-            int updateCount = appointmentEJB.updateAppointmentStatus(id, UtilityClass.AppointmentStatusEnum.Done);
-            if(updateCount > 0)
-                System.out.println("Appointment Updated : " + updateCount);
-            
+            appointmentEJB.updateAppointmentStatus(appointmentId, UtilityClass.AppointmentStatusEnum.Done);
             return "index";
         }
         catch(Exception ex) {
             return "errorPage";
         }
     }
-    
-    public String makeAppointmentOffline(int id){
-        try {
-            this.appointment = appointmentEJB.find(id);
-            if(this.appointment.getDoctor() != null)
-                this.appointment.setDoctorId(this.appointment.getDoctor().getId());
-    
-            if(this.appointment.getPatient() != null)
-                this.appointment.setPatientId(this.appointment.getPatient().getId());
-            
-            return "makeAppointmentOffline";
-        }
-        catch(Exception ex) {
-            return "errorPage";
-        }
-    }
-    
-    public String makeAppointmentOnline(int id){
-        try {
-            this.appointment.setDoctorId(id);
-            this.appointment.setPatientId(12); //this should be the logged in patient id
-            
-            return "makeAppointmentOnline";
-        }
-        catch(Exception ex) {
-            return "errorPage";
-        }
-    }
-    
-    public String makeAppointment(int id){
-        try {
-            this.appointment.setDoctorId(id);
-            this.appointment.setPatientId(12); //this should be the logged in patient id
-            return "makeAppointmentOnline";
-        }
-        catch(Exception ex) {
-            return "errorPage";
-        }
-    }
-    
-    public String viewProfileDetail(int id){
-        try {
-            this.appointment = appointmentEJB.find(id);
-            return "viewAppointmentProfile";
-        }
-        catch(Exception ex) {
-            return "errorPage";
-        }
-    }
-    
+        
     public List<Appointment> getAppointmentList() {
         this.appointmentList = appointmentEJB.findAllAppointments();
         return appointmentList;
@@ -185,22 +148,22 @@ public class AppointmentMB {
         this.appointmentList = appointmentList;
     }
 
-    public List<String> getReservedAppointmentList() {
+    public List<String> getReservedAppointmentList(int doctorId, Date appointmentDate) {
         try {
             DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             Calendar calobj = Calendar.getInstance();
             String date = df.format(calobj.getTime());
 
-            int doctorId = (this.appointment.getDoctorId() != 0) ? this.appointment.getDoctorId() : doctorMB.getActiveDoctorList().get(0).getId();
-            if(this.appointment.getAppointmentDate() != null)
-                date =  this.appointment.getAppointmentDate();
-
-            reservedAppointmentList = appointmentEJB.findAppointmentsByDoctorAndDate(doctorId, date);
+            reservedAppointmentList = appointmentEJB.findAppointmentsByDoctorAndDate(doctorId, appointmentDate);
         }
         catch(Exception ex) {
             System.out.println("Error at getReservedAppointmentList() in AppointmentMB: " + ex.getMessage());
         }
         return reservedAppointmentList;
+    }
+
+    public Date getCurrentDate() {
+        return currentDate;
     }
 
     public Appointment getAppointment() {

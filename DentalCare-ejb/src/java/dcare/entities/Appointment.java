@@ -30,8 +30,8 @@ public class Appointment implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-//    @Temporal(TemporalType.DATE)
-    private String appointmentDate;
+    @Temporal(TemporalType.DATE)
+    private Date appointmentDate;
     private String appointmentTime;
     private String referredBy;
     private String problemDescription;
@@ -64,7 +64,7 @@ public class Appointment implements Serializable {
     public Appointment() {
     }
 
-    public Appointment(String appointmentDate, String appointmentTime, String referredBy, String problemDescription, Date createdAt, Date modifiedAt, String appointmentStatus) {
+    public Appointment(Date appointmentDate, String appointmentTime, String referredBy, String problemDescription, Date createdAt, Date modifiedAt, String appointmentStatus) {
         this.appointmentDate = appointmentDate;
         this.appointmentTime = appointmentTime;
         this.referredBy = referredBy;
@@ -82,16 +82,16 @@ public class Appointment implements Serializable {
         this.id = id;
     }
 
-    public String getAppointmentDate() {
+    public Date getAppointmentDate() {
         
-        DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
-        Calendar calobj = Calendar.getInstance();
-        String date = df.format(calobj.getTime());
+//        DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
+//        Calendar calobj = Calendar.getInstance();
+//        String date = df.format(calobj.getTime());
         
-        return (appointmentDate != "") ? appointmentDate : date;
+        return appointmentDate;
     }
 
-    public void setAppointmentDate(String appointmentDate) {
+    public void setAppointmentDate(Date appointmentDate) {
         this.appointmentDate = appointmentDate;
     }
 

@@ -57,7 +57,7 @@ public class AppointmentEJB {
         return query.getResultList();
     }
     
-    public List<String> findAppointmentsByDoctorAndDate(int doctorId, String appointmentDate) {
+    public List<String> findAppointmentsByDoctorAndDate(int doctorId, Date appointmentDate) {
         CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<Appointment> criQuery = builder.createQuery(Appointment.class);
         
@@ -93,14 +93,8 @@ public class AppointmentEJB {
 //    }
     
     public int updateAppointmentStatus(int appointmentId, UtilityClass.AppointmentStatusEnum status) {
-        StringBuilder stringBuilder = new StringBuilder("update APPOINTMENT ")
-                .append(" set APPOINTMENTSTATUS = '?1' ")
-                .append(" where id = '?2' ");
-        
-        Query query = em.createNativeQuery(stringBuilder.toString(), Appointment.class);
-        query.setParameter("1", appointmentId);
-        query.setParameter("2", status);
-        
+        String sql = String.format("update APPOINTMENT set APPOINTMENTSTATUS = '%s' where id = %d", status, appointmentId);
+        Query query = em.createNativeQuery(sql);
         return query.executeUpdate();
     }
     

@@ -45,6 +45,23 @@ public class UtilityMB {
         return PrescriptionStatusEnum.values();
     }
     
+    public List<String> getAppointmentTimes() {
+        ArrayList<String> apptTimes = new ArrayList<String>();
+//        apptTimes.addAll("08:00 AM");
+
+//        <f:selectItem itemLabel="08:00 AM" itemValue="08:00 AM" />                                        
+//        <f:selectItem itemLabel="08:45 AM" itemValue="08:45 AM" />                                        
+//        <f:selectItem itemLabel="09:30 AM" itemValue="09:30 AM" />                                        
+//        <f:selectItem itemLabel="10:15 AM" itemValue="10:15 AM" />                                        
+//        <f:selectItem itemLabel="11:00 AM" itemValue="11:00 AM" />                                        
+//        <f:selectItem itemLabel="01:00 PM" itemValue="01:00 PM" />                                        
+//        <f:selectItem itemLabel="01:45 PM" itemValue="01:45 PM" />                                        
+//        <f:selectItem itemLabel="02:30 PM" itemValue="02:30 PM" />                                        
+//        <f:selectItem itemLabel="03:15 PM" itemValue="03:15 PM" />   
+
+       return apptTimes;
+    }
+    
     public Map<String, Object> getSessionMap() {
         return FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
     }

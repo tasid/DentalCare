@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
     <title>Dental C@re</title>
 </h:head>
@@ -42,12 +43,20 @@
                         <tr>
                             <th><h:outputLabel value="Joining Date"/></th>
                             <td><h:outputLabel value=":"/></td>
-                            <td><h:outputLabel value="#{DoctorMB.doctor.joiningDate}"/></td>
+                            <td>
+                                <h:outputLabel value="#{DoctorMB.doctor.joiningDate}">
+                                    <f:convertDateTime pattern="MM-dd-yyyy"/>
+                                </h:outputLabel>
+                            </td>
                         </tr>
                         <tr>
                             <th><h:outputLabel value="Date of Birth"/></th>
                             <td><h:outputLabel value=":"/></td>
-                            <td><h:outputLabel value="#{DoctorMB.doctor.dateOfBirth}"/></td>
+                            <td>
+                                <h:outputLabel value="#{DoctorMB.doctor.dateOfBirth}">
+                                    <f:convertDateTime pattern="MM-dd-yyyy"/>
+                                </h:outputLabel>
+                            </td>
                         </tr>
                         <tr>
                             <th><h:outputLabel value="Blod Group"/></th>
