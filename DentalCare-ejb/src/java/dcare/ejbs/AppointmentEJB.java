@@ -71,6 +71,22 @@ public class AppointmentEJB {
         TypedQuery<Appointment> query = em.createQuery(criQuery);
         return query.getResultList();
     }
+    //Reminder Functionality[TASID]
+    public List<Appointment> findTommorrowsAppoinment() {
+        Date today = new Date();    
+        Date tomorrow = new Date(today.getTime() + (1000 * 60 * 60 * 24));
+        CriteriaBuilder builder = em.getCriteriaBuilder();
+        CriteriaQuery<Appointment> criQuery = builder.createQuery(Appointment.class);       
+        Root<Appointment> appointment = criQuery.from(Appointment.class);
+        Join<Appointment, Doctor> doctor = appointment.join(Appointment_.doctor);
+        Join<Appointment, Patient> patient = appointment.join(Appointment_.patient);
+        criQuery.where(builder.equal(doctor.get(Doctor_.workStatus), UtilityClass.WorkStatusEnum.Active.toString()),
+                       builder.equal(appointment.get(Appointment_.appointmentDate), tomorrow),
+                       builder.equal(appointment.get(Appointment_.appointmentStatus), UtilityClass.AppointmentStatusEnum.Open.toString()));
+        criQuery.select(appointment);       
+        TypedQuery<Appointment> query = em.createQuery(criQuery);
+        return query.getResultList();
+    }
     
     public List<String> findAppointmentsByDoctorAndDate(int doctorId, Date appointmentDate) {
         CriteriaBuilder builder = em.getCriteriaBuilder();
