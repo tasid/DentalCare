@@ -42,20 +42,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <c:forEach items="#{DoctorMB.activeDoctorList}" var="doctor">
+                            <c:forEach items="#{ReportMB.doctorAppointmentList}" var="doctorApp">
                                 <tr>
                                     <td style="width: 165px; vertical-align: middle; text-align: center;">
-                                        <img src="#{doctor.imageUrl}"
-                                             alt="#{doctor.firstName} #{doctor.lastName}"/>
+                                        <img src="#{doctorApp.doctor.imageUrl}"
+                                             alt="#{doctorApp.doctor.firstName} #{doctorApp.doctor.lastName}"/>
                                     </td>
                                     <c:forEach items="#{UtilityMB.appointmentTimes}" var="aptTime">
                                         <td style="text-align: center !important; vertical-align: middle !important;">
-                                            <c:forEach items="#{ReportMB.doctorAppointmentList}" var="dApt">
-                                                <c:if test="#{dApt.reservedAppointments.contains(o)}">
-                                                    <div style="padding: 5px 0px; border: 1px solid blueviolet; background-color: green; color: wheat;" 
-                                                         title="#{appointment.patient.firstName} #{appointment.patient.lastName}">Reserved</div>
-                                                </c:if>
-                                            </c:forEach>
+                                            <c:if test="#{doctorApp.reservedAppointments.contains(aptTime)}">
+                                                <div style="padding: 15px 0px; border: 1px solid blueviolet; background-color: green; color: wheat;" 
+                                                     title="#{doctorApp.patient.firstName} #{doctorApp.patient.lastName}&#013;#{doctorApp.patient.address}&#013;#{doctorApp.patient.phoneNumber}&#013;#{doctorApp.patient.email}">
+                                                    Reserved
+                                                </div>
+                                            </c:if>
                                         </td>
                                     </c:forEach>
                                 </tr>

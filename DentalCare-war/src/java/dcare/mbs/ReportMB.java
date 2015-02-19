@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -46,16 +47,14 @@ public class ReportMB {
     HashMap<Integer, List<String>> doctorAppointments = new HashMap<>();
     
     @Transient
-    private List<DoctorAppointments> doctorAppointmentList = new ArrayList();
-
-    @Transient
-    private List<String> reservedTimes = new ArrayList();
+    private List<DoctorAppointments> doctorAppointmentList;
     
     public ReportMB() { }
     
     @PostConstruct
     public void init() {
         appointmentList = new ArrayList();
+        doctorAppointmentList = new ArrayList();
     }    
     
     public List<Appointment> getAppointmentList() {
@@ -79,43 +78,31 @@ public class ReportMB {
         this.appointmentList = appointmentEJB.findAppointmentsByDate(appointmentDate); //appointment date should be considered here
         return appointmentList;
     }
-
-    public List<String> getReservedTimes(int doctorId) {
-        Map apptMap = getDoctorAppointments();
-        
-        if(apptMap.size() > 0)
-            reservedTimes = (ArrayList<String>)apptMap.get(doctorId);
-        
-        return reservedTimes;
-    }
-
-    public List<DoctorAppointments> getDoctorAppointmentList() {
-        HashMap dApps = getDoctorAppointments();
-        Iterator it = dApps.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry)it.next();
-            DoctorAppointments dappoint = new DoctorAppointments();
-            dappoint.setDoctorId((Integer)pair.getKey());
-            dappoint.setReservedAppointments((ArrayList<String>)pair.getValue());
-            doctorAppointmentList.add(dappoint);
-        }
-        return doctorAppointmentList;
-    }
     
-    public HashMap getDoctorAppointments() {
+    public List<DoctorAppointments> getDoctorAppointmentList() {
         this.appointmentList = appointmentEJB.findAppointmentsByDate(appointmentDate);
         for(Appointment apt : appointmentList) {
-            if(!doctorAppointments.containsKey(apt.getDoctor().getId()))
-                doctorAppointments.put(apt.getDoctor().getId(), getAppTimes(apt.getDoctor().getId(), appointmentList));
+            Doctor dctr = apt.getDoctor();
+            if(!doctorAppointments.containsKey(dctr.getId())) {
+                List<String> appTimes = getAppTimes(dctr.getId(), appointmentList);
+                doctorAppointments.put(dctr.getId(), appTimes);
+                
+                DoctorAppointments dappoint = new DoctorAppointments();
+                dappoint.setDoctor(dctr);
+                dappoint.setPatient(apt.getPatient());
+                dappoint.setReservedAppointments(appTimes);
+                doctorAppointmentList.add(dappoint);
+            }
         }
-        return doctorAppointments;
+        return doctorAppointmentList;
     }
     
     private List<String> getAppTimes(int doctorId, List<Appointment> appointments) {
         List<String> times = new ArrayList();
         for(Appointment apt : appointments) {
-            if(apt.getDoctor().getId() == doctorId && !times.contains(apt.getAppointmentTime()))
+            if(apt.getDoctor().getId() == doctorId && !times.contains(apt.getAppointmentTime())) {
                 times.add(apt.getAppointmentTime());
+            }
         }
         return times;
     }

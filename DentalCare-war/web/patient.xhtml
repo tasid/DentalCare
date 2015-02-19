@@ -45,6 +45,7 @@
                                     <h:inputText id="email" value="#{PatientMB.patient.email}" 
                                                  validatorMessage="Please enter a valid Email"
                                                  ps:placeholder="care@dcare.com">
+                                        <f:validateRegex for="email" pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
                                         <f:validateRequired for="email" />
                                     </h:inputText>&nbsp;                                     
                                     <h:message for="email" errorClass="error-message" />                                    
