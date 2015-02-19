@@ -37,6 +37,9 @@ public class AppointmentMB {
     
     @ManagedProperty(value = "#{UtilityMB}")
     private UtilityMB utilityMB;
+    
+    @ManagedProperty(value = "#{EmailMB}")
+    private EmailMB emailMB;
 
     private Appointment appointment;
     private List<Appointment> appointmentList;
@@ -73,6 +76,24 @@ public class AppointmentMB {
 //            }
             
             appointmentEJB.save(appointment);
+            //Sending Email To Patient
+            SimpleDateFormat ft = new SimpleDateFormat ("d MMM, Y");
+            
+            String patientName = patient.getFirstName()+" "+patient.getLastName();
+            String emailTo = patient.getEmail();
+            String emailSubject = "About Appoinment Schedule - "+ ft.format(appointment.getAppointmentDate())+" "+appointment.getAppointmentTime();
+            String emailBody = "<div>";
+            
+            emailBody +="Dear "+patientName+",<br />";
+            emailBody += "Your Appoinment Information <br /><br />";
+            emailBody += "Doctor : "+ selectedDoctor.getFirstName() + " "+selectedDoctor.getLastName()+ " - <br /> ";
+            emailBody += "Date : "+  ft.format(appointment.getAppointmentDate()) + "<br /> ";
+            emailBody += "Time : "+ appointment.getAppointmentTime() + "<br /><br /><br /> ";
+            emailBody += "Best Regards <br /> Dental Care <br /> Phone: (641)222-1110 <br /> Email: care@thedentalcare.com";
+            emailBody += "/div";
+            
+            emailMB.sendEmail(emailTo, emailSubject, emailBody);
+            
             return "appointmentConfirmation";
         }
         catch(Exception ex) {            
@@ -197,4 +218,13 @@ public class AppointmentMB {
     public void setUtilityMB(UtilityMB utilityMB) {
         this.utilityMB = utilityMB;
     }    
+
+    public EmailMB getEmailMB() {
+        return emailMB;
+    }
+
+    public void setEmailMB(EmailMB emailMB) {
+        this.emailMB = emailMB;
+    }  
+    
 }
